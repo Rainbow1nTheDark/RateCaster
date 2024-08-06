@@ -1,0 +1,25 @@
+{
+  "name": "rate-caster",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "frog dev"
+  },
+  "dependencies": {
+    "@hono/node-server": "latest",
+    "@vitejs/plugin-react": "^4.3.1",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.2",
+    "frog": "latest",
+    "frog-ui": "^0.1.5",
+    "graphql-request": "^7.1.0",
+    "hono": "^4",
+    "import": "^0.0.6",
+    "vite": "^5.3.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "typescript": "latest"
+  }
+}
