@@ -17,6 +17,7 @@
 
 # IDE
 .vscode
+.DS_Store
 /RateCasterDapp/.vscode
 /RateCasterDapp/.idea
 /RateCasterDapp/.vercel
@@ -27,3 +28,26 @@
 # ENVs
 /RateCasterDapp/packages/hardhat/.env
 /RateCasterDapp/packages/nextjs/.env
+
+# RateCasterFrame directory
+
+/RateCasterFrame/.env
+/RateCasterFrame/node_modules
+/RateCasterFrame/.pnp
+/RateCasterFrame/.pnp.js
+
+# production
+/RateCasterFrame/docs/dist
+
+# misc
+/RateCasterFrame/.DS_Store
+/RateCasterFrame/*.pem
+
+# debug
+/RateCasterFrame/npm-debug.log*
+/RateCasterFrame/yarn-debug.log*
+/RateCasterFrame/yarn-error.log*
+
+# typescript
+/RateCasterFrame/*.tsbuildinfo
+
