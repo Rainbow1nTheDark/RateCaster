@@ -16,6 +16,7 @@
 /RateCasterDapp/.DS_Store
 
 # IDE
+.vscode
 /RateCasterDapp/.vscode
 /RateCasterDapp/.idea
 /RateCasterDapp/.vercel
