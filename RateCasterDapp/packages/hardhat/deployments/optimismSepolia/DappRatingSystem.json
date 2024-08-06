@@ -1,0 +1,351 @@
+{
+  "address": "0x6D93459EaAd5c87e890fd368d6C866170E9703fe",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract IEAS",
+          "name": "eas",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "schema",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidDappId",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidEAS",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidRatingUID",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidSchemaUID",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidStarRating",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "ratingUid",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "revokedBy",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "revokedAt",
+          "type": "uint256"
+        }
+      ],
+      "name": "DappRatingRevoked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "attestationId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "dappId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "starRating",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "reviewText",
+          "type": "string"
+        }
+      ],
+      "name": "DappRatingSubmitted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "dappId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "registrationTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "DappRegistered",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "dappId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint8",
+          "name": "starRating",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "reviewText",
+          "type": "string"
+        }
+      ],
+      "name": "addDappRating",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "dappCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "dappIdIsRegistered",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "dappId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "isDappRegistered",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_description",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_url",
+          "type": "string"
+        }
+      ],
+      "name": "registerDapp",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "ratingUid",
+          "type": "bytes32"
+        }
+      ],
+      "name": "revokeDappRating",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xb1b1bd577977973aaf74e48d9e708710b75cd131fd3779e038dbdb57c3ac6dcf",
+  "receipt": {
+    "to": null,
+    "from": "0x76ef7734E8c5f84b62e3b8fAae6F4995bFea64AB",
+    "contractAddress": "0x6D93459EaAd5c87e890fd368d6C866170E9703fe",
+    "transactionIndex": 1,
+    "gasUsed": "546032",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x5cf5b89870fc8daa526820baf2ecbcc25203462e107650a3a89d21e3db2c1ac9",
+    "transactionHash": "0xb1b1bd577977973aaf74e48d9e708710b75cd131fd3779e038dbdb57c3ac6dcf",
+    "logs": [],
+    "blockNumber": 10965659,
+    "cumulativeGasUsed": "589895",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x4200000000000000000000000000000000000021",
+    "0xe0e1b78797994244e42ace9e2878348cfcff5194f0a43fe17492d4a7c2a30713"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "950ccb43dd8dcfa01588b5d420466cda",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.25+commit.b61c2a91\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract IEAS\",\"name\":\"eas\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"schema\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"InvalidDappId\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidEAS\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRatingUID\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidSchemaUID\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidStarRating\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"ratingUid\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"revokedBy\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"revokedAt\",\"type\":\"uint256\"}],\"name\":\"DappRatingRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"attestationId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"dappId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"starRating\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"reviewText\",\"type\":\"string\"}],\"name\":\"DappRatingSubmitted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"dappId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"registrationTime\",\"type\":\"uint256\"}],\"name\":\"DappRegistered\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"dappId\",\"type\":\"bytes32\"},{\"internalType\":\"uint8\",\"name\":\"starRating\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"reviewText\",\"type\":\"string\"}],\"name\":\"addDappRating\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"dappCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"dappIdIsRegistered\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"dappId\",\"type\":\"bytes32\"}],\"name\":\"isDappRegistered\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_url\",\"type\":\"string\"}],\"name\":\"registerDapp\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"ratingUid\",\"type\":\"bytes32\"}],\"name\":\"revokeDappRating\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"constructor\":{\"params\":{\"eas\":\"The address of the global EAS contract.\",\"schema\":\"The schema UID of the DappRatingSystem.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"constructor\":{\"notice\":\"Creates a new DappRatingSystem instance.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/DappRatingSystem.sol\":\"DappRatingSystem\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@ethereum-attestation-service/eas-contracts/contracts/Common.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.8.0;\\n\\n// A representation of an empty/uninitialized UID.\\nbytes32 constant EMPTY_UID = 0;\\n\\n// A zero expiration represents an non-expiring attestation.\\nuint64 constant NO_EXPIRATION_TIME = 0;\\n\\nerror AccessDenied();\\nerror DeadlineExpired();\\nerror InvalidEAS();\\nerror InvalidLength();\\nerror InvalidSignature();\\nerror NotFound();\\n\\n/// @notice A struct representing ECDSA signature data.\\nstruct Signature {\\n    uint8 v; // The recovery ID.\\n    bytes32 r; // The x-coordinate of the nonce R.\\n    bytes32 s; // The signature data.\\n}\\n\\n/// @notice A struct representing a single attestation.\\nstruct Attestation {\\n    bytes32 uid; // A unique identifier of the attestation.\\n    bytes32 schema; // The unique identifier of the schema.\\n    uint64 time; // The time when the attestation was created (Unix timestamp).\\n    uint64 expirationTime; // The time when the attestation expires (Unix timestamp).\\n    uint64 revocationTime; // The time when the attestation was revoked (Unix timestamp).\\n    bytes32 refUID; // The UID of the related attestation.\\n    address recipient; // The recipient of the attestation.\\n    address attester; // The attester/sender of the attestation.\\n    bool revocable; // Whether the attestation is revocable.\\n    bytes data; // Custom attestation data.\\n}\\n\\n/// @notice A helper function to work with unchecked iterators in loops.\\nfunction uncheckedInc(uint256 i) pure returns (uint256 j) {\\n    unchecked {\\n        j = i + 1;\\n    }\\n}\\n\",\"keccak256\":\"0x957bd2e6d0d6d637f86208b135c29fbaf4412cb08e5e7a61ede16b80561bf685\",\"license\":\"MIT\"},\"@ethereum-attestation-service/eas-contracts/contracts/IEAS.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.8.0;\\n\\nimport { ISchemaRegistry } from \\\"./ISchemaRegistry.sol\\\";\\nimport { ISemver } from \\\"./ISemver.sol\\\";\\nimport { Attestation, Signature } from \\\"./Common.sol\\\";\\n\\n/// @notice A struct representing the arguments of the attestation request.\\nstruct AttestationRequestData {\\n    address recipient; // The recipient of the attestation.\\n    uint64 expirationTime; // The time when the attestation expires (Unix timestamp).\\n    bool revocable; // Whether the attestation is revocable.\\n    bytes32 refUID; // The UID of the related attestation.\\n    bytes data; // Custom attestation data.\\n    uint256 value; // An explicit ETH amount to send to the resolver. This is important to prevent accidental user errors.\\n}\\n\\n/// @notice A struct representing the full arguments of the attestation request.\\nstruct AttestationRequest {\\n    bytes32 schema; // The unique identifier of the schema.\\n    AttestationRequestData data; // The arguments of the attestation request.\\n}\\n\\n/// @notice A struct representing the full arguments of the full delegated attestation request.\\nstruct DelegatedAttestationRequest {\\n    bytes32 schema; // The unique identifier of the schema.\\n    AttestationRequestData data; // The arguments of the attestation request.\\n    Signature signature; // The ECDSA signature data.\\n    address attester; // The attesting account.\\n    uint64 deadline; // The deadline of the signature/request.\\n}\\n\\n/// @notice A struct representing the full arguments of the multi attestation request.\\nstruct MultiAttestationRequest {\\n    bytes32 schema; // The unique identifier of the schema.\\n    AttestationRequestData[] data; // The arguments of the attestation request.\\n}\\n\\n/// @notice A struct representing the full arguments of the delegated multi attestation request.\\nstruct MultiDelegatedAttestationRequest {\\n    bytes32 schema; // The unique identifier of the schema.\\n    AttestationRequestData[] data; // The arguments of the attestation requests.\\n    Signature[] signatures; // The ECDSA signatures data. Please note that the signatures are assumed to be signed with increasing nonces.\\n    address attester; // The attesting account.\\n    uint64 deadline; // The deadline of the signature/request.\\n}\\n\\n/// @notice A struct representing the arguments of the revocation request.\\nstruct RevocationRequestData {\\n    bytes32 uid; // The UID of the attestation to revoke.\\n    uint256 value; // An explicit ETH amount to send to the resolver. This is important to prevent accidental user errors.\\n}\\n\\n/// @notice A struct representing the full arguments of the revocation request.\\nstruct RevocationRequest {\\n    bytes32 schema; // The unique identifier of the schema.\\n    RevocationRequestData data; // The arguments of the revocation request.\\n}\\n\\n/// @notice A struct representing the arguments of the full delegated revocation request.\\nstruct DelegatedRevocationRequest {\\n    bytes32 schema; // The unique identifier of the schema.\\n    RevocationRequestData data; // The arguments of the revocation request.\\n    Signature signature; // The ECDSA signature data.\\n    address revoker; // The revoking account.\\n    uint64 deadline; // The deadline of the signature/request.\\n}\\n\\n/// @notice A struct representing the full arguments of the multi revocation request.\\nstruct MultiRevocationRequest {\\n    bytes32 schema; // The unique identifier of the schema.\\n    RevocationRequestData[] data; // The arguments of the revocation request.\\n}\\n\\n/// @notice A struct representing the full arguments of the delegated multi revocation request.\\nstruct MultiDelegatedRevocationRequest {\\n    bytes32 schema; // The unique identifier of the schema.\\n    RevocationRequestData[] data; // The arguments of the revocation requests.\\n    Signature[] signatures; // The ECDSA signatures data. Please note that the signatures are assumed to be signed with increasing nonces.\\n    address revoker; // The revoking account.\\n    uint64 deadline; // The deadline of the signature/request.\\n}\\n\\n/// @title IEAS\\n/// @notice EAS - Ethereum Attestation Service interface.\\ninterface IEAS is ISemver {\\n    /// @notice Emitted when an attestation has been made.\\n    /// @param recipient The recipient of the attestation.\\n    /// @param attester The attesting account.\\n    /// @param uid The UID the revoked attestation.\\n    /// @param schemaUID The UID of the schema.\\n    event Attested(address indexed recipient, address indexed attester, bytes32 uid, bytes32 indexed schemaUID);\\n\\n    /// @notice Emitted when an attestation has been revoked.\\n    /// @param recipient The recipient of the attestation.\\n    /// @param attester The attesting account.\\n    /// @param schemaUID The UID of the schema.\\n    /// @param uid The UID the revoked attestation.\\n    event Revoked(address indexed recipient, address indexed attester, bytes32 uid, bytes32 indexed schemaUID);\\n\\n    /// @notice Emitted when a data has been timestamped.\\n    /// @param data The data.\\n    /// @param timestamp The timestamp.\\n    event Timestamped(bytes32 indexed data, uint64 indexed timestamp);\\n\\n    /// @notice Emitted when a data has been revoked.\\n    /// @param revoker The address of the revoker.\\n    /// @param data The data.\\n    /// @param timestamp The timestamp.\\n    event RevokedOffchain(address indexed revoker, bytes32 indexed data, uint64 indexed timestamp);\\n\\n    /// @notice Returns the address of the global schema registry.\\n    /// @return The address of the global schema registry.\\n    function getSchemaRegistry() external view returns (ISchemaRegistry);\\n\\n    /// @notice Attests to a specific schema.\\n    /// @param request The arguments of the attestation request.\\n    /// @return The UID of the new attestation.\\n    ///\\n    /// Example:\\n    ///     attest({\\n    ///         schema: \\\"0facc36681cbe2456019c1b0d1e7bedd6d1d40f6f324bf3dd3a4cef2999200a0\\\",\\n    ///         data: {\\n    ///             recipient: \\\"0xdEADBeAFdeAdbEafdeadbeafDeAdbEAFdeadbeaf\\\",\\n    ///             expirationTime: 0,\\n    ///             revocable: true,\\n    ///             refUID: \\\"0x0000000000000000000000000000000000000000000000000000000000000000\\\",\\n    ///             data: \\\"0xF00D\\\",\\n    ///             value: 0\\n    ///         }\\n    ///     })\\n    function attest(AttestationRequest calldata request) external payable returns (bytes32);\\n\\n    /// @notice Attests to a specific schema via the provided ECDSA signature.\\n    /// @param delegatedRequest The arguments of the delegated attestation request.\\n    /// @return The UID of the new attestation.\\n    ///\\n    /// Example:\\n    ///     attestByDelegation({\\n    ///         schema: '0x8e72f5bc0a8d4be6aa98360baa889040c50a0e51f32dbf0baa5199bd93472ebc',\\n    ///         data: {\\n    ///             recipient: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',\\n    ///             expirationTime: 1673891048,\\n    ///             revocable: true,\\n    ///             refUID: '0x0000000000000000000000000000000000000000000000000000000000000000',\\n    ///             data: '0x1234',\\n    ///             value: 0\\n    ///         },\\n    ///         signature: {\\n    ///             v: 28,\\n    ///             r: '0x148c...b25b',\\n    ///             s: '0x5a72...be22'\\n    ///         },\\n    ///         attester: '0xc5E8740aD971409492b1A63Db8d83025e0Fc427e',\\n    ///         deadline: 1673891048\\n    ///     })\\n    function attestByDelegation(\\n        DelegatedAttestationRequest calldata delegatedRequest\\n    ) external payable returns (bytes32);\\n\\n    /// @notice Attests to multiple schemas.\\n    /// @param multiRequests The arguments of the multi attestation requests. The requests should be grouped by distinct\\n    ///     schema ids to benefit from the best batching optimization.\\n    /// @return The UIDs of the new attestations.\\n    ///\\n    /// Example:\\n    ///     multiAttest([{\\n    ///         schema: '0x33e9094830a5cba5554d1954310e4fbed2ef5f859ec1404619adea4207f391fd',\\n    ///         data: [{\\n    ///             recipient: '0xdEADBeAFdeAdbEafdeadbeafDeAdbEAFdeadbeaf',\\n    ///             expirationTime: 1673891048,\\n    ///             revocable: true,\\n    ///             refUID: '0x0000000000000000000000000000000000000000000000000000000000000000',\\n    ///             data: '0x1234',\\n    ///             value: 1000\\n    ///         },\\n    ///         {\\n    ///             recipient: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',\\n    ///             expirationTime: 0,\\n    ///             revocable: false,\\n    ///             refUID: '0x480df4a039efc31b11bfdf491b383ca138b6bde160988222a2a3509c02cee174',\\n    ///             data: '0x00',\\n    ///             value: 0\\n    ///         }],\\n    ///     },\\n    ///     {\\n    ///         schema: '0x5ac273ce41e3c8bfa383efe7c03e54c5f0bff29c9f11ef6ffa930fc84ca32425',\\n    ///         data: [{\\n    ///             recipient: '0xdEADBeAFdeAdbEafdeadbeafDeAdbEAFdeadbeaf',\\n    ///             expirationTime: 0,\\n    ///             revocable: true,\\n    ///             refUID: '0x75bf2ed8dca25a8190c50c52db136664de25b2449535839008ccfdab469b214f',\\n    ///             data: '0x12345678',\\n    ///             value: 0\\n    ///         },\\n    ///     }])\\n    function multiAttest(MultiAttestationRequest[] calldata multiRequests) external payable returns (bytes32[] memory);\\n\\n    /// @notice Attests to multiple schemas using via provided ECDSA signatures.\\n    /// @param multiDelegatedRequests The arguments of the delegated multi attestation requests. The requests should be\\n    ///     grouped by distinct schema ids to benefit from the best batching optimization.\\n    /// @return The UIDs of the new attestations.\\n    ///\\n    /// Example:\\n    ///     multiAttestByDelegation([{\\n    ///         schema: '0x8e72f5bc0a8d4be6aa98360baa889040c50a0e51f32dbf0baa5199bd93472ebc',\\n    ///         data: [{\\n    ///             recipient: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',\\n    ///             expirationTime: 1673891048,\\n    ///             revocable: true,\\n    ///             refUID: '0x0000000000000000000000000000000000000000000000000000000000000000',\\n    ///             data: '0x1234',\\n    ///             value: 0\\n    ///         },\\n    ///         {\\n    ///             recipient: '0xdEADBeAFdeAdbEafdeadbeafDeAdbEAFdeadbeaf',\\n    ///             expirationTime: 0,\\n    ///             revocable: false,\\n    ///             refUID: '0x0000000000000000000000000000000000000000000000000000000000000000',\\n    ///             data: '0x00',\\n    ///             value: 0\\n    ///         }],\\n    ///         signatures: [{\\n    ///             v: 28,\\n    ///             r: '0x148c...b25b',\\n    ///             s: '0x5a72...be22'\\n    ///         },\\n    ///         {\\n    ///             v: 28,\\n    ///             r: '0x487s...67bb',\\n    ///             s: '0x12ad...2366'\\n    ///         }],\\n    ///         attester: '0x1D86495b2A7B524D747d2839b3C645Bed32e8CF4',\\n    ///         deadline: 1673891048\\n    ///     }])\\n    function multiAttestByDelegation(\\n        MultiDelegatedAttestationRequest[] calldata multiDelegatedRequests\\n    ) external payable returns (bytes32[] memory);\\n\\n    /// @notice Revokes an existing attestation to a specific schema.\\n    /// @param request The arguments of the revocation request.\\n    ///\\n    /// Example:\\n    ///     revoke({\\n    ///         schema: '0x8e72f5bc0a8d4be6aa98360baa889040c50a0e51f32dbf0baa5199bd93472ebc',\\n    ///         data: {\\n    ///             uid: '0x101032e487642ee04ee17049f99a70590c735b8614079fc9275f9dd57c00966d',\\n    ///             value: 0\\n    ///         }\\n    ///     })\\n    function revoke(RevocationRequest calldata request) external payable;\\n\\n    /// @notice Revokes an existing attestation to a specific schema via the provided ECDSA signature.\\n    /// @param delegatedRequest The arguments of the delegated revocation request.\\n    ///\\n    /// Example:\\n    ///     revokeByDelegation({\\n    ///         schema: '0x8e72f5bc0a8d4be6aa98360baa889040c50a0e51f32dbf0baa5199bd93472ebc',\\n    ///         data: {\\n    ///             uid: '0xcbbc12102578c642a0f7b34fe7111e41afa25683b6cd7b5a14caf90fa14d24ba',\\n    ///             value: 0\\n    ///         },\\n    ///         signature: {\\n    ///             v: 27,\\n    ///             r: '0xb593...7142',\\n    ///             s: '0x0f5b...2cce'\\n    ///         },\\n    ///         revoker: '0x244934dd3e31bE2c81f84ECf0b3E6329F5381992',\\n    ///         deadline: 1673891048\\n    ///     })\\n    function revokeByDelegation(DelegatedRevocationRequest calldata delegatedRequest) external payable;\\n\\n    /// @notice Revokes existing attestations to multiple schemas.\\n    /// @param multiRequests The arguments of the multi revocation requests. The requests should be grouped by distinct\\n    ///     schema ids to benefit from the best batching optimization.\\n    ///\\n    /// Example:\\n    ///     multiRevoke([{\\n    ///         schema: '0x8e72f5bc0a8d4be6aa98360baa889040c50a0e51f32dbf0baa5199bd93472ebc',\\n    ///         data: [{\\n    ///             uid: '0x211296a1ca0d7f9f2cfebf0daaa575bea9b20e968d81aef4e743d699c6ac4b25',\\n    ///             value: 1000\\n    ///         },\\n    ///         {\\n    ///             uid: '0xe160ac1bd3606a287b4d53d5d1d6da5895f65b4b4bab6d93aaf5046e48167ade',\\n    ///             value: 0\\n    ///         }],\\n    ///     },\\n    ///     {\\n    ///         schema: '0x5ac273ce41e3c8bfa383efe7c03e54c5f0bff29c9f11ef6ffa930fc84ca32425',\\n    ///         data: [{\\n    ///             uid: '0x053d42abce1fd7c8fcddfae21845ad34dae287b2c326220b03ba241bc5a8f019',\\n    ///             value: 0\\n    ///         },\\n    ///     }])\\n    function multiRevoke(MultiRevocationRequest[] calldata multiRequests) external payable;\\n\\n    /// @notice Revokes existing attestations to multiple schemas via provided ECDSA signatures.\\n    /// @param multiDelegatedRequests The arguments of the delegated multi revocation attestation requests. The requests\\n    ///     should be grouped by distinct schema ids to benefit from the best batching optimization.\\n    ///\\n    /// Example:\\n    ///     multiRevokeByDelegation([{\\n    ///         schema: '0x8e72f5bc0a8d4be6aa98360baa889040c50a0e51f32dbf0baa5199bd93472ebc',\\n    ///         data: [{\\n    ///             uid: '0x211296a1ca0d7f9f2cfebf0daaa575bea9b20e968d81aef4e743d699c6ac4b25',\\n    ///             value: 1000\\n    ///         },\\n    ///         {\\n    ///             uid: '0xe160ac1bd3606a287b4d53d5d1d6da5895f65b4b4bab6d93aaf5046e48167ade',\\n    ///             value: 0\\n    ///         }],\\n    ///         signatures: [{\\n    ///             v: 28,\\n    ///             r: '0x148c...b25b',\\n    ///             s: '0x5a72...be22'\\n    ///         },\\n    ///         {\\n    ///             v: 28,\\n    ///             r: '0x487s...67bb',\\n    ///             s: '0x12ad...2366'\\n    ///         }],\\n    ///         revoker: '0x244934dd3e31bE2c81f84ECf0b3E6329F5381992',\\n    ///         deadline: 1673891048\\n    ///     }])\\n    function multiRevokeByDelegation(\\n        MultiDelegatedRevocationRequest[] calldata multiDelegatedRequests\\n    ) external payable;\\n\\n    /// @notice Timestamps the specified bytes32 data.\\n    /// @param data The data to timestamp.\\n    /// @return The timestamp the data was timestamped with.\\n    function timestamp(bytes32 data) external returns (uint64);\\n\\n    /// @notice Timestamps the specified multiple bytes32 data.\\n    /// @param data The data to timestamp.\\n    /// @return The timestamp the data was timestamped with.\\n    function multiTimestamp(bytes32[] calldata data) external returns (uint64);\\n\\n    /// @notice Revokes the specified bytes32 data.\\n    /// @param data The data to timestamp.\\n    /// @return The timestamp the data was revoked with.\\n    function revokeOffchain(bytes32 data) external returns (uint64);\\n\\n    /// @notice Revokes the specified multiple bytes32 data.\\n    /// @param data The data to timestamp.\\n    /// @return The timestamp the data was revoked with.\\n    function multiRevokeOffchain(bytes32[] calldata data) external returns (uint64);\\n\\n    /// @notice Returns an existing attestation by UID.\\n    /// @param uid The UID of the attestation to retrieve.\\n    /// @return The attestation data members.\\n    function getAttestation(bytes32 uid) external view returns (Attestation memory);\\n\\n    /// @notice Checks whether an attestation exists.\\n    /// @param uid The UID of the attestation to retrieve.\\n    /// @return Whether an attestation exists.\\n    function isAttestationValid(bytes32 uid) external view returns (bool);\\n\\n    /// @notice Returns the timestamp that the specified data was timestamped with.\\n    /// @param data The data to query.\\n    /// @return The timestamp the data was timestamped with.\\n    function getTimestamp(bytes32 data) external view returns (uint64);\\n\\n    /// @notice Returns the timestamp that the specified data was timestamped with.\\n    /// @param data The data to query.\\n    /// @return The timestamp the data was timestamped with.\\n    function getRevokeOffchain(address revoker, bytes32 data) external view returns (uint64);\\n}\\n\",\"keccak256\":\"0x242e0203b314c8539fd4ad3c1f0b7a9c1178fe55b223f4bc007eb9cbf271854c\",\"license\":\"MIT\"},\"@ethereum-attestation-service/eas-contracts/contracts/ISchemaRegistry.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.8.0;\\n\\nimport { ISemver } from \\\"./ISemver.sol\\\";\\n\\nimport { ISchemaResolver } from \\\"./resolver/ISchemaResolver.sol\\\";\\n\\n/// @notice A struct representing a record for a submitted schema.\\nstruct SchemaRecord {\\n    bytes32 uid; // The unique identifier of the schema.\\n    ISchemaResolver resolver; // Optional schema resolver.\\n    bool revocable; // Whether the schema allows revocations explicitly.\\n    string schema; // Custom specification of the schema (e.g., an ABI).\\n}\\n\\n/// @title ISchemaRegistry\\n/// @notice The interface of global attestation schemas for the Ethereum Attestation Service protocol.\\ninterface ISchemaRegistry is ISemver {\\n    /// @notice Emitted when a new schema has been registered\\n    /// @param uid The schema UID.\\n    /// @param registerer The address of the account used to register the schema.\\n    /// @param schema The schema data.\\n    event Registered(bytes32 indexed uid, address indexed registerer, SchemaRecord schema);\\n\\n    /// @notice Submits and reserves a new schema\\n    /// @param schema The schema data schema.\\n    /// @param resolver An optional schema resolver.\\n    /// @param revocable Whether the schema allows revocations explicitly.\\n    /// @return The UID of the new schema.\\n    function register(string calldata schema, ISchemaResolver resolver, bool revocable) external returns (bytes32);\\n\\n    /// @notice Returns an existing schema by UID\\n    /// @param uid The UID of the schema to retrieve.\\n    /// @return The schema data members.\\n    function getSchema(bytes32 uid) external view returns (SchemaRecord memory);\\n}\\n\",\"keccak256\":\"0xea97dcd36a0c422169cbaac06698249e199049b627c16bff93fb8ab829058754\",\"license\":\"MIT\"},\"@ethereum-attestation-service/eas-contracts/contracts/ISemver.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.8.0;\\n\\n/// @title ISemver\\n/// @notice A semver interface.\\ninterface ISemver {\\n    /// @notice Returns the full semver contract version.\\n    /// @return Semver contract version as a string.\\n    function version() external view returns (string memory);\\n}\\n\",\"keccak256\":\"0x04a67939b4e1a8d0a51101b8f69f8882930bbdc66319f38023828625b5d1ff18\",\"license\":\"MIT\"},\"@ethereum-attestation-service/eas-contracts/contracts/resolver/ISchemaResolver.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.8.0;\\n\\nimport { ISemver } from \\\"../ISemver.sol\\\";\\nimport { Attestation } from \\\"../Common.sol\\\";\\n\\n/// @title ISchemaResolver\\n/// @notice The interface of an optional schema resolver.\\ninterface ISchemaResolver is ISemver {\\n    /// @notice Checks if the resolver can be sent ETH.\\n    /// @return Whether the resolver supports ETH transfers.\\n    function isPayable() external pure returns (bool);\\n\\n    /// @notice Processes an attestation and verifies whether it's valid.\\n    /// @param attestation The new attestation.\\n    /// @return Whether the attestation is valid.\\n    function attest(Attestation calldata attestation) external payable returns (bool);\\n\\n    /// @notice Processes multiple attestations and verifies whether they are valid.\\n    /// @param attestations The new attestations.\\n    /// @param values Explicit ETH amounts which were sent with each attestation.\\n    /// @return Whether all the attestations are valid.\\n    function multiAttest(\\n        Attestation[] calldata attestations,\\n        uint256[] calldata values\\n    ) external payable returns (bool);\\n\\n    /// @notice Processes an attestation revocation and verifies if it can be revoked.\\n    /// @param attestation The existing attestation to be revoked.\\n    /// @return Whether the attestation can be revoked.\\n    function revoke(Attestation calldata attestation) external payable returns (bool);\\n\\n    /// @notice Processes revocation of multiple attestation and verifies they can be revoked.\\n    /// @param attestations The existing attestations to be revoked.\\n    /// @param values Explicit ETH amounts which were sent with each revocation.\\n    /// @return Whether the attestations can be revoked.\\n    function multiRevoke(\\n        Attestation[] calldata attestations,\\n        uint256[] calldata values\\n    ) external payable returns (bool);\\n}\\n\",\"keccak256\":\"0x479f39f03425df5385d790cd2c7447b8250aeb9733d13029d3da8c5982b6604b\",\"license\":\"MIT\"},\"contracts/DappRatingSystem.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity 0.8.25;\\n\\nimport { IEAS, AttestationRequest, AttestationRequestData, RevocationRequest, RevocationRequestData } from \\\"@ethereum-attestation-service/eas-contracts/contracts/IEAS.sol\\\";\\nimport { NO_EXPIRATION_TIME, EMPTY_UID } from \\\"@ethereum-attestation-service/eas-contracts/contracts/Common.sol\\\";\\n\\ncontract DappRatingSystem {\\n    uint256 public dappCounter;\\n    mapping(bytes32 => bool) public dappIdIsRegistered;\\n\\n    event DappRegistered(bytes32 indexed dappId, string name, string description, string url, address owner, uint256 registrationTime);\\n    event DappRatingSubmitted(bytes32 indexed attestationId, bytes32 indexed dappId, uint8 starRating, string reviewText);\\n    event DappRatingRevoked(bytes32 indexed ratingUid, address indexed revokedBy, uint256 revokedAt);\\n\\n    error InvalidEAS();\\n    error InvalidSchemaUID();\\n    error InvalidRatingUID();\\n    error InvalidDappId();\\n    error InvalidStarRating();\\n\\n    // The address of the global EAS contract.\\n    IEAS private immutable _eas;\\n    bytes32 private immutable _schemaUid;\\n\\n    /// @notice Creates a new DappRatingSystem instance.\\n    /// @param eas The address of the global EAS contract.\\n    /// @param schema The schema UID of the DappRatingSystem.\\n    constructor(IEAS eas, bytes32 schema) {\\n        if (address(eas) == address(0)) {\\n            revert InvalidEAS();\\n        }\\n        if (schema == EMPTY_UID) {\\n            revert InvalidSchemaUID();\\n        }\\n        _eas = eas;\\n        _schemaUid = schema;\\n    }\\n\\n    function registerDapp(string memory _name, string memory _description, string memory _url) public {\\n        // Calculate the dappId by hashing the URL\\n        bytes32 _dappId = keccak256(abi.encodePacked(_url));\\n\\n        // Check if the Dapp with the same URL is already registered\\n        require(dappIdIsRegistered[_dappId] == false, \\\"Dapp with the same URL already registered\\\");\\n\\n        // Increment the dapp counter\\n        dappCounter++;\\n        dappIdIsRegistered[_dappId] = true;\\n\\n        // Emit the DappRegistered event\\n        emit DappRegistered(_dappId, _name, _description, _url, msg.sender, block.timestamp);\\n    }\\n\\n    function isDappRegistered(bytes32 dappId) external view returns (bool) {\\n        return dappIdIsRegistered[dappId];\\n    }\\n\\n    function addDappRating(bytes32 dappId, uint8 starRating, string memory reviewText) external returns (bytes32) {\\n        if (dappId == EMPTY_UID || dappIdIsRegistered[dappId] == false) {\\n            revert InvalidDappId();\\n        }\\n        if (starRating < 1 || starRating > 5) {\\n            revert InvalidStarRating();\\n        }\\n        bytes32 attestation = \\n            _eas.attest(\\n                AttestationRequest({\\n                    schema: _schemaUid,\\n                    data: AttestationRequestData({\\n                        recipient: address(0), // No recipient\\n                        expirationTime: NO_EXPIRATION_TIME, // No expiration time\\n                        revocable: true,\\n                        refUID: EMPTY_UID, // No references UI\\n                        data: abi.encode(dappId, starRating, reviewText), // Encode a single uint256 as a parameter to the schema\\n                        value: 0 // No value/ETH\\n                    })\\n                })\\n            );\\n        emit DappRatingSubmitted(attestation, dappId, starRating, reviewText);\\n        return attestation;\\n    }\\n\\n    function revokeDappRating(bytes32 ratingUid) external {\\n        if (ratingUid == EMPTY_UID) {\\n            revert InvalidRatingUID();\\n        }\\n        _eas.revoke(RevocationRequest({ schema: _schemaUid, data: RevocationRequestData({ uid: ratingUid, value: 0 }) }));\\n        emit DappRatingRevoked(ratingUid, msg.sender, block.timestamp);\\n    }\\n}\",\"keccak256\":\"0x46371ad2be4eebd09b8871e1a79d36fb67bce79f8a112baaa09851a35bc9ba28\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60c060405234801561001057600080fd5b506040516109d43803806109d483398101604081905261002f9161008a565b6001600160a01b038216610056576040516341bc07ff60e11b815260040160405180910390fd5b80610074576040516380d9b7d760e01b815260040160405180910390fd5b6001600160a01b0390911660805260a0526100c4565b6000806040838503121561009d57600080fd5b82516001600160a01b03811681146100b457600080fd5b6020939093015192949293505050565b60805160a0516108dd6100f7600039600081816101c10152610321015260008181610187015261038301526108dd6000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c80635080f8a2146100675780635d6b87f91461008d578063838c8f32146100a2578063ad26be0b146100d5578063cdb0d863146100f8578063da15437814610101575b600080fd5b61007a6100753660046105dc565b610114565b6040519081526020015b60405180910390f35b6100a061009b36600461063b565b6102f8565b005b6100c56100b036600461063b565b60016020526000908152604090205460ff1681565b6040519015158152602001610084565b6100c56100e336600461063b565b60009081526001602052604090205460ff1690565b61007a60005481565b6100a061010f366004610654565b610421565b6000831580610132575060008481526001602052604090205460ff16155b1561015057604051630172951f60e01b815260040160405180910390fd5b60018360ff161080610165575060058360ff16115b15610183576040516352b79ea360e01b815260040160405180910390fd5b60007f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031663f17325e760405180604001604052807f000000000000000000000000000000000000000000000000000000000000000081526020016040518060c0016040528060006001600160a01b03168152602001600067ffffffffffffffff1681526020016001151581526020016000801b81526020018a8a8a60405160200161023893929190610722565b604051602081830303815290604052815260200160008152508152506040518263ffffffff1660e01b8152600401610270919061074d565b6020604051808303816000875af115801561028f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102b391906107d0565b905084817fa7772ec4b89def345a0c116dedd194085f26c634cd44ecbfb0cbd51b06f3e1dd86866040516102e89291906107e9565b60405180910390a3949350505050565b80610316576040516309e46d6b60e41b815260040160405180910390fd5b6040805180820182527f000000000000000000000000000000000000000000000000000000000000000081528151808301835283815260006020808301919091528083019182529251634692626760e01b81529151600483015251805160248301529091015160448201527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031690634692626790606401600060405180830381600087803b1580156103cf57600080fd5b505af11580156103e3573d6000803e3d6000fd5b50506040514281523392508391507f764fcaa8b2c6f1ba30688315d0db01c26b0d2a711b539acfe472ab46848d02b89060200160405180910390a350565b600081604051602001610434919061080d565b60408051601f1981840301815291815281516020928301206000818152600190935291205490915060ff16156104c25760405162461bcd60e51b815260206004820152602960248201527f446170702077697468207468652073616d652055524c20616c726561647920726044820152681959da5cdd195c995960ba1b606482015260840160405180910390fd5b6000805490806104d183610829565b9091555050600081815260016020819052604091829020805460ff191690911790555181907f71d03fa8269cbec478f1015fc359602c0c972654f5084a3030f00fc83418aeba9061052b9087908790879033904290610850565b60405180910390a250505050565b634e487b7160e01b600052604160045260246000fd5b600082601f83011261056057600080fd5b813567ffffffffffffffff8082111561057b5761057b610539565b604051601f8301601f19908116603f011681019082821181831017156105a3576105a3610539565b816040528381528660208588010111156105bc57600080fd5b836020870160208301376000602085830101528094505050505092915050565b6000806000606084860312156105f157600080fd5b83359250602084013560ff8116811461060957600080fd5b9150604084013567ffffffffffffffff81111561062557600080fd5b6106318682870161054f565b9150509250925092565b60006020828403121561064d57600080fd5b5035919050565b60008060006060848603121561066957600080fd5b833567ffffffffffffffff8082111561068157600080fd5b61068d8783880161054f565b945060208601359150808211156106a357600080fd5b6106af8783880161054f565b935060408601359150808211156106c557600080fd5b506106318682870161054f565b60005b838110156106ed5781810151838201526020016106d5565b50506000910152565b6000815180845261070e8160208601602086016106d2565b601f01601f19169290920160200192915050565b83815260ff8316602082015260606040820152600061074460608301846106f6565b95945050505050565b60208152815160208201526000602083015160408084015260018060a01b03815116606084015267ffffffffffffffff60208201511660808401526040810151151560a0840152606081015160c0840152608081015160c060e08501526107b86101208501826106f6565b905060a0820151610100850152809250505092915050565b6000602082840312156107e257600080fd5b5051919050565b60ff8316815260406020820152600061080560408301846106f6565b949350505050565b6000825161081f8184602087016106d2565b9190910192915050565b60006001820161084957634e487b7160e01b600052601160045260246000fd5b5060010190565b60a08152600061086360a08301886106f6565b828103602084015261087581886106f6565b9050828103604084015261088981876106f6565b6001600160a01b03959095166060840152505060800152939250505056fea264697066735822122016e787e0f07d4c93ffb0eb41b6226456100a806acb97b17e074ece6b0f40650364736f6c63430008190033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c80635080f8a2146100675780635d6b87f91461008d578063838c8f32146100a2578063ad26be0b146100d5578063cdb0d863146100f8578063da15437814610101575b600080fd5b61007a6100753660046105dc565b610114565b6040519081526020015b60405180910390f35b6100a061009b36600461063b565b6102f8565b005b6100c56100b036600461063b565b60016020526000908152604090205460ff1681565b6040519015158152602001610084565b6100c56100e336600461063b565b60009081526001602052604090205460ff1690565b61007a60005481565b6100a061010f366004610654565b610421565b6000831580610132575060008481526001602052604090205460ff16155b1561015057604051630172951f60e01b815260040160405180910390fd5b60018360ff161080610165575060058360ff16115b15610183576040516352b79ea360e01b815260040160405180910390fd5b60007f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031663f17325e760405180604001604052807f000000000000000000000000000000000000000000000000000000000000000081526020016040518060c0016040528060006001600160a01b03168152602001600067ffffffffffffffff1681526020016001151581526020016000801b81526020018a8a8a60405160200161023893929190610722565b604051602081830303815290604052815260200160008152508152506040518263ffffffff1660e01b8152600401610270919061074d565b6020604051808303816000875af115801561028f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102b391906107d0565b905084817fa7772ec4b89def345a0c116dedd194085f26c634cd44ecbfb0cbd51b06f3e1dd86866040516102e89291906107e9565b60405180910390a3949350505050565b80610316576040516309e46d6b60e41b815260040160405180910390fd5b6040805180820182527f000000000000000000000000000000000000000000000000000000000000000081528151808301835283815260006020808301919091528083019182529251634692626760e01b81529151600483015251805160248301529091015160448201527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031690634692626790606401600060405180830381600087803b1580156103cf57600080fd5b505af11580156103e3573d6000803e3d6000fd5b50506040514281523392508391507f764fcaa8b2c6f1ba30688315d0db01c26b0d2a711b539acfe472ab46848d02b89060200160405180910390a350565b600081604051602001610434919061080d565b60408051601f1981840301815291815281516020928301206000818152600190935291205490915060ff16156104c25760405162461bcd60e51b815260206004820152602960248201527f446170702077697468207468652073616d652055524c20616c726561647920726044820152681959da5cdd195c995960ba1b606482015260840160405180910390fd5b6000805490806104d183610829565b9091555050600081815260016020819052604091829020805460ff191690911790555181907f71d03fa8269cbec478f1015fc359602c0c972654f5084a3030f00fc83418aeba9061052b9087908790879033904290610850565b60405180910390a250505050565b634e487b7160e01b600052604160045260246000fd5b600082601f83011261056057600080fd5b813567ffffffffffffffff8082111561057b5761057b610539565b604051601f8301601f19908116603f011681019082821181831017156105a3576105a3610539565b816040528381528660208588010111156105bc57600080fd5b836020870160208301376000602085830101528094505050505092915050565b6000806000606084860312156105f157600080fd5b83359250602084013560ff8116811461060957600080fd5b9150604084013567ffffffffffffffff81111561062557600080fd5b6106318682870161054f565b9150509250925092565b60006020828403121561064d57600080fd5b5035919050565b60008060006060848603121561066957600080fd5b833567ffffffffffffffff8082111561068157600080fd5b61068d8783880161054f565b945060208601359150808211156106a357600080fd5b6106af8783880161054f565b935060408601359150808211156106c557600080fd5b506106318682870161054f565b60005b838110156106ed5781810151838201526020016106d5565b50506000910152565b6000815180845261070e8160208601602086016106d2565b601f01601f19169290920160200192915050565b83815260ff8316602082015260606040820152600061074460608301846106f6565b95945050505050565b60208152815160208201526000602083015160408084015260018060a01b03815116606084015267ffffffffffffffff60208201511660808401526040810151151560a0840152606081015160c0840152608081015160c060e08501526107b86101208501826106f6565b905060a0820151610100850152809250505092915050565b6000602082840312156107e257600080fd5b5051919050565b60ff8316815260406020820152600061080560408301846106f6565b949350505050565b6000825161081f8184602087016106d2565b9190910192915050565b60006001820161084957634e487b7160e01b600052601160045260246000fd5b5060010190565b60a08152600061086360a08301886106f6565b828103602084015261087581886106f6565b9050828103604084015261088981876106f6565b6001600160a01b03959095166060840152505060800152939250505056fea264697066735822122016e787e0f07d4c93ffb0eb41b6226456100a806acb97b17e074ece6b0f40650364736f6c63430008190033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "constructor": {
+        "params": {
+          "eas": "The address of the global EAS contract.",
+          "schema": "The schema UID of the DappRatingSystem."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "constructor": {
+        "notice": "Creates a new DappRatingSystem instance."
+      }
+    },
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 2360,
+        "contract": "contracts/DappRatingSystem.sol:DappRatingSystem",
+        "label": "dappCounter",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 2364,
+        "contract": "contracts/DappRatingSystem.sol:DappRatingSystem",
+        "label": "dappIdIsRegistered",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_bytes32,t_bool)"
+      }
+    ],
+    "types": {
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_mapping(t_bytes32,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

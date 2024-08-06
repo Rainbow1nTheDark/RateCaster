@@ -154,17 +154,16 @@ type OptionalTupple<T> = T extends readonly [infer H, ...infer R] ? readonly [H 
 type UseScaffoldArgsParam<
   TContractName extends ContractName,
   TFunctionName extends ExtractAbiFunctionNames<ContractAbi<TContractName>>,
-> =
-  TFunctionName extends FunctionNamesWithInputs<TContractName>
-    ? {
-        args: OptionalTupple<UnionToIntersection<AbiFunctionArguments<ContractAbi<TContractName>, TFunctionName>>>;
-        value?: ExtractAbiFunction<ContractAbi<TContractName>, TFunctionName>["stateMutability"] extends "payable"
-          ? bigint | undefined
-          : undefined;
-      }
-    : {
-        args?: never;
-      };
+> = TFunctionName extends FunctionNamesWithInputs<TContractName>
+  ? {
+      args: OptionalTupple<UnionToIntersection<AbiFunctionArguments<ContractAbi<TContractName>, TFunctionName>>>;
+      value?: ExtractAbiFunction<ContractAbi<TContractName>, TFunctionName>["stateMutability"] extends "payable"
+        ? bigint | undefined
+        : undefined;
+    }
+  : {
+      args?: never;
+    };
 
 export type UseScaffoldReadConfig<
   TContractName extends ContractName,
@@ -180,7 +179,7 @@ export type UseScaffoldReadConfig<
     Omit<UseReadContractParameters, "chainId" | "abi" | "address" | "functionName" | "args">
 >;
 
-export type ScaffoldWriteContractVariables<
+export type scaffoldWriteContractVariables<
   TContractName extends ContractName,
   TFunctionName extends ExtractAbiFunctionNames<ContractAbi<TContractName>, WriteAbiStateMutability>,
 > = IsContractDeclarationMissing<
@@ -198,7 +197,7 @@ export type TransactorFuncOptions = {
   blockConfirmations?: number;
 };
 
-export type ScaffoldWriteContractOptions = MutateOptions<
+export type scaffoldWriteContractOptions = MutateOptions<
   WriteContractReturnType,
   WriteContractErrorType,
   WriteVariables,
@@ -215,9 +214,8 @@ export type UseScaffoldEventConfig<
   >,
 > = {
   contractName: TContractName;
-  eventName: TEventName;
 } & IsContractDeclarationMissing<
-  Omit<UseWatchContractEventParameters, "onLogs" | "address" | "abi" | "eventName"> & {
+  Omit<UseWatchContractEventParameters, "onLogs" | "address" | "abi"> & {
     onLogs: (
       logs: Simplify<
         Omit<Log<bigint, number, any>, "args" | "eventName"> & {
@@ -227,7 +225,7 @@ export type UseScaffoldEventConfig<
       >[],
     ) => void;
   },
-  Omit<UseWatchContractEventParameters<ContractAbi<TContractName>>, "onLogs" | "address" | "abi" | "eventName"> & {
+  Omit<UseWatchContractEventParameters<ContractAbi<TContractName>>, "onLogs" | "address" | "abi"> & {
     onLogs: (
       logs: Simplify<
         Omit<Log<bigint, number, false, TEvent, false, [TEvent], TEventName>, "args"> & {

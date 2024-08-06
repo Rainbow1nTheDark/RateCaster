@@ -8,7 +8,7 @@ import { Contract } from "ethers";
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+const deployDappRaterSchemaResolver: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   /*
     On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
 
@@ -21,11 +21,14 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   */
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
+  const EAS_CONTRACT_ADDRESS = "0x4200000000000000000000000000000000000021";
+  const DAPP_RATER_SCHEMA = "0xeaa96eb7dd9a3101cabc983cfbfcacc1594c70832d37a79b51bc43db4e4e40fb";
 
-  await deploy("YourContract", {
+  //from: "0xEda854D520c2d32820D3d59562eeBbB5BA6E3440",
+  await deploy("DappRaterSchemaResolver", {
     from: deployer,
     // Contract constructor arguments
-    args: [deployer],
+    args: [EAS_CONTRACT_ADDRESS],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
@@ -33,12 +36,19 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   });
 
   // Get the deployed contract to interact with it after deploying.
-  const yourContract = await hre.ethers.getContract<Contract>("YourContract", deployer);
-  console.log("👋 Initial greeting:", await yourContract.greeting());
+  const schemaResolver = await hre.ethers.getContract<Contract>("DappRaterSchemaResolver", deployer);
+  console.log("👋 Schema resolver version: ", await schemaResolver.version());
+
+  await deploy("DappRatingSystem", {
+    from: "0xfAf3fb18C9CFCD328B1DFDf55078C9BfE5e20740", //deployer,
+    args: [EAS_CONTRACT_ADDRESS, DAPP_RATER_SCHEMA],
+    log: true,
+    autoMine: true,
+  });
 };
 
-export default deployYourContract;
+export default deployDappRaterSchemaResolver;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
 // e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["YourContract"];
+deployDappRaterSchemaResolver.tags = ["DappRatingSystem", "DappRaterSchemaResolver"];

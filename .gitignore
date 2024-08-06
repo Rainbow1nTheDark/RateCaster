@@ -1,0 +1,28 @@
+# dependencies
+/RateCasterDapp/node_modules
+
+# yarn
+/RateCasterDapp/.yarn/*
+!/RateCasterDapp/.yarn/patches
+!/RateCasterDapp/.yarn/plugins
+!/RateCasterDapp/.yarn/releases
+!/RateCasterDapp/.yarn/sdks
+!/RateCasterDapp/.yarn/versions
+
+# eslint
+/RateCasterDapp/.eslintcache
+
+# misc
+/RateCasterDapp/.DS_Store
+
+# IDE
+/RateCasterDapp/.vscode
+/RateCasterDapp/.idea
+/RateCasterDapp/.vercel
+/RateCasterDapp/packages/hardhat/deployments/optimismSepolia/.chainId
+/RateCasterDapp/packages/hardhat/deployments/optimismSepolia/DappRaterSchemaResolver.json
+/RateCasterDapp/packages/hardhat/deployments/optimismSepolia/solcInputs/d415057fd74441cb9f9f26ddb0159806.json
+
+# ENVs
+/RateCasterDapp/packages/hardhat/.env
+/RateCasterDapp/packages/nextjs/.env

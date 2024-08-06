@@ -76,17 +76,17 @@ export const ReadOnlyFunctionForm = ({
         <InheritanceTooltip inheritedFrom={inheritedFrom} />
       </p>
       {inputElements}
-      <div className="flex flex-col md:flex-row justify-between gap-2 flex-wrap">
-        <div className="flex-grow w-full md:max-w-[80%]">
+      <div className="flex justify-between gap-2 flex-wrap">
+        <div className="flex-grow w-4/5">
           {result !== null && result !== undefined && (
-            <div className="bg-secondary rounded-3xl text-sm px-4 py-1.5 break-words overflow-auto">
+            <div className="bg-secondary rounded-3xl text-sm px-4 py-1.5 break-words">
               <p className="font-bold m-0 mb-1">Result:</p>
-              <pre className="whitespace-pre-wrap break-words">{displayTxResult(result, "sm")}</pre>
+              <pre className="whitespace-pre-wrap break-words">{displayTxResult(result)}</pre>
             </div>
           )}
         </div>
         <button
-          className="btn btn-secondary btn-sm self-end md:self-start"
+          className="btn btn-secondary btn-sm"
           onClick={async () => {
             const { data } = await refetch();
             setResult(data);

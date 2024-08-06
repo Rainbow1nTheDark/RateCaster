@@ -29,7 +29,6 @@
     "next:format": "yarn workspace @se-2/nextjs format",
     "next:check-types": "yarn workspace @se-2/nextjs check-types",
     "next:build": "yarn workspace @se-2/nextjs build",
-    "next:serve": "yarn workspace @se-2/nextjs serve",
     "postinstall": "husky install",
     "precommit": "lint-staged",
     "vercel": "yarn workspace @se-2/nextjs vercel",
@@ -37,10 +36,19 @@
   },
   "packageManager": "yarn@3.2.3",
   "devDependencies": {
+    "@types/graphql": "^14.5.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3"
   },
-  "engines": {
-    "node": ">=18.17.0"
+  "dependencies": {
+    "@ethereum-attestation-service/eas-contracts": "^1.4.1",
+    "@types/node": "^20.12.12",
+    "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.12.1",
+    "graphql": "^16.8.1",
+    "graphql-request": "5.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
   }
 }

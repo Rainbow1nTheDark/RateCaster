@@ -55,7 +55,7 @@ export const Faucet = () => {
   }, []);
 
   const sendETH = async () => {
-    if (!faucetAddress || !inputAddress) {
+    if (!faucetAddress) {
       return;
     }
     try {
@@ -64,6 +64,7 @@ export const Faucet = () => {
         to: inputAddress,
         value: parseEther(sendValue as `${number}`),
         account: faucetAddress,
+        chain: hardhat,
       });
       setLoading(false);
       setInputAddress(undefined);
