@@ -38,7 +38,20 @@ app.frame('/', async (c) => {
   return c.res({
     action: '/fapps',
     image: (
-      <img src='/main_page.png' alt="Icon" />
+      <div style={{ color: 'white', backgroundColor: '#7e5bc2', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px', height: '100vh' }}>
+        
+        <div style={{ display: 'flex', textAlign: 'center', marginBottom: '20px' }}>
+          <h1 style={{ color: '#FFD700', fontSize: 64 }}>
+            Explore Farcaster Ecosystem
+          </h1>
+        </div>
+        <div style={{ display: 'flex', height: '40px' }}></div> {/* Spacer */}
+        <div style={{ display: 'flex', textAlign: 'center' }}>
+          <h2 style={{ color: 'white', fontSize: 48 }}>
+            Start Here & Explore Fapps
+          </h2>
+        </div>
+      </div>
     ),
     intents: [
       <Button value='random'>Random</Button>,
@@ -156,10 +169,14 @@ app.frame('/review/:appname', (c) => {
   return c.res({
     action: '/finish',
     image: (
-      <div style={{ color: 'white', display: 'flex', flexDirection: 'row', fontSize: 48, padding: '20px' }}>
-        <h1 style={{ marginBottom: '20px' }}>Rate</h1>
-        <h1 style={{color: '#7e5bc2'}}>{appname}</h1>
+      <div style={{ color: 'white', backgroundColor: '#7e5bc2', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '20px', height: '100%' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: 48, marginBottom: '20px', flexWrap: 'wrap' }}>
+        <h1 style={{ color: 'white', marginRight: '20px' }}>Rate</h1>
+        <h1 style={{ color: '#FFD700', marginLeft: '20px' }}>{appname}</h1>
       </div>
+        <hr style={{ width: '100%', borderColor: 'white', marginBottom: '20px' }} />
+        <h2 style={{ color: '#ADD8E6', marginTop: 'auto', fontSize: 48 }}>Cast Your Vote: 1-5 Stars</h2>
+    </div>
     ),
     intents: [
       <TextInput placeholder='Rate 1-5:'/>,
@@ -194,6 +211,21 @@ app.transaction('/submit-review/:appname', async (c) => {
   })
 
 })
+
+app.frame('/finish', (c) => {
+  // const { transactionId } = c
+  return c.res({
+    image: (
+      <div style={{ color: 'white', backgroundColor: '#7e5bc2', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '20px', height: '100%' }}>
+        <h1 style={{ color: '#FFD700', marginBottom: '20px', fontSize: 64 }}>Success</h1>
+        <hr style={{ width: '100%', borderColor: 'white', marginBottom: '20px' }} />
+        <div style={{ color: '#ADD8E6', display: 'flex', fontSize: 48 }}>
+          Thank you for Casting your Vote!
+        </div>
+      </div>
+    )
+  });
+});
 
 // ******** Test Functions ******//
 app.frame('registerCaster', (c) => {
@@ -240,16 +272,7 @@ app.transaction('/register', (c) => {
 // })
 
 
-app.frame('/finish', (c) => {
-  const { transactionId } = c
-  return c.res({
-    image: (
-      <div style={{ color: '#7e5bc2', display: 'flex', fontSize: 48 }}>
-        Signature: {transactionId}
-      </div>
-    )
-  })
-})
+
  
 //
 

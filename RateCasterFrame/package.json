@@ -9,6 +9,7 @@
     "@hono/node-server": "latest",
     "@vitejs/plugin-react": "^4.3.1",
     "axios": "^1.7.2",
+    "canvas-confetti": "^1.9.3",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.2",
     "frog": "latest",
@@ -19,6 +20,7 @@
     "vite": "^5.3.5"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.6.4",
     "@types/node": "^20.14.12",
     "typescript": "latest"
   }
