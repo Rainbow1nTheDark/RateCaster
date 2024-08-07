@@ -107,9 +107,9 @@ app.frame('/fapps', async (c) => {
     image: (
       <div style={{ color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', fontSize: 24, padding: '20px', backgroundColor: '#7e5bc2'}}>
         <div style={{ color: '#FFD700', fontSize: 64, display: 'flex' }}>{header} 3 Farcaster Apps:</div>
-
+        <hr style={{ width: '100%', borderColor: 'white', marginBottom: '10px' }} />
         {top3Dapps.map((dapp, index) => (
-          <div key={dapp.id} style={{ fontSize: 48, display: 'flex', flexDirection: 'row', alignItems: 'center',  borderRadius: '2px', width: '100%', }}>
+          <div key={dapp.id} style={{ fontSize: 42, display: 'flex', flexDirection: 'row', alignItems: 'center',  borderRadius: '2px', width: '100%', }}>
             <h3 style={{ color: 'white', marginRight: '10px' }}>
               {index + 1}.<a style={{ color: '#ADD8E6' }}>&nbsp;{dapp.name}:</a>
             </h3>
