@@ -1,81 +1,73 @@
-# 🏗 Scaffold-ETH 2
+# Rate Caster Main Application
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+## Introduction
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+Rate Caster is a decentralized application (Dapp) built on the Base blockchain, designed to enhance transparency and trust within the Web3 ecosystem. This directory contains the core application, which includes the website and the smart contracts. The app is built using Scaffold-ETH 2, an open-source toolkit for building Dapps on the Ethereum blockchain.
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+## Why Rate Caster?
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+The Web3 space is rapidly growing with numerous Dapps available to users. However, this vast array often leaves users overwhelmed and uncertain about the security, reliability, and trustworthiness of these applications. Rate Caster addresses this challenge by leveraging the Ethereum Attestation Service (EAS), providing a platform where community feedback leads the way in determining the trustworthiness of Dapps and their decisions.
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+## Features
 
-## Requirements
+### Website
 
-Before you begin, you need to install the following tools:
+- **Home Page**: Displays a list of registered Dapps along with their community ratings. Users can search and filter through the list to find applications of interest.
+- **Dapp Registration**: Allows users to register new Dapps on the platform, ensuring the database is continually updated with the latest applications.
+- **Dapp Rating and Reviews**: Users can leave detailed reviews and rate Dapps, contributing to the overall trust score of each application.
+- **My Reviews**: Users can view and manage their review history, with options to update or delete their past contributions.
 
-- [Node (>= v18.17)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+### Integration with Warpcaster
+
+- **Seamless Interaction**: Users can view popular Dapps and provide reviews within the Warpcaster chat frame.
+- **Mapped Reviews**: Future plans include mapping user reviews to Farcaster IDs, enhancing the credibility of reviews by associating them with real user profiles.
 
 ## Quickstart
 
-To get started with Scaffold-ETH 2, follow the steps below:
+To get started with the Rate Caster application, follow the steps below:
 
-1. Clone this repo & install dependencies
+1. **Clone this repository & install dependencies**
 
-```
-git clone https://github.com/scaffold-eth/scaffold-eth-2.git
-cd scaffold-eth-2
-yarn install
-```
+    ```bash
+    git clone https://github.com/Rainbow1nTheDark/RateCaster.git
+    cd RateCasterDapp
+    yarn install
+    ```
 
-2. Run a local network in the first terminal:
+2. **Run a local network**
 
-```
-yarn chain
-```
+    In the first terminal, start a local Ethereum network using Hardhat:
 
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `hardhat.config.ts`.
+    ```bash
+    yarn chain
+    ```
 
-3. On a second terminal, deploy the test contract:
+3. **Deploy the test contract**
 
-```
-yarn deploy
-```
+    In a second terminal, deploy the test smart contract to the local network:
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
+    ```bash
+    yarn deploy
+    ```
 
-4. On a third terminal, start your NextJS app:
+4. **Start the NextJS app**
 
-```
-yarn start
-```
+    In a third terminal, start your NextJS app:
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+    ```bash
+    yarn start
+    ```
 
-**What's next**:
+    Visit your app on: [http://localhost:3000](http://localhost:3000). You can interact with your smart contract using the `Debug Contracts` page.
 
-- Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
-- Edit your smart contract test in: `packages/hardhat/test`. To run test use `yarn hardhat:test`
+## Future Directions
 
-## Documentation
+We believe in decentralized social applications and will be focusing on integrating and mapping Farcaster IDs to provided reviews. This will allow us to see Warpcaster profiles attached to the reviews, enhancing credibility and trust.
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
+## Contribution and Community
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+Rate Caster is an open-source project, and community contributions are highly valued. Whether you're a developer, writer, or enthusiast, your input is welcome!
 
-## Contributing to Scaffold-ETH 2
+## Contact Us
 
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+For support or further inquiries, reach us at [@crypto_fencer](https://twitter.com/crypto_fencer) / [#0xbuilders](https://0xbuilders.org) or by email at [web3enthusiast@icloud.com](mailto:web3enthusiast@icloud.com).
