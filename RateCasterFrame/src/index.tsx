@@ -123,7 +123,7 @@ app.frame('/fapps', async (c) => {
       ...top3Dapps.map((dapp, index) => (
         <Button value={dapp.name}>{(index + 1).toString()}. {dapp.name}</Button>
       )),
-      <Button.Link href='https://ratecaster.com'>See All</Button.Link>
+      <Button.Link href='https://ratecaster.xyz'>See All</Button.Link>
     ]
   });
 });

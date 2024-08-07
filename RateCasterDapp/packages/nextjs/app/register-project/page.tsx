@@ -17,9 +17,9 @@ const Modal: React.FC<ModalProps> = ({ isVisible, onClose, children }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white border-2 border-red-500 p-4 rounded-lg">
+      <div className="bg-white border-2 border-[#7e5bc2] p-4 rounded-lg">
         <div className="flex justify-end">
-          <button onClick={onClose} className="text-red-500 font-bold">
+          <button onClick={onClose} className="text-[#7e5bc2] font-bold">
             X
           </button>
         </div>
@@ -86,6 +86,7 @@ const RegisterProject: NextPage = () => {
 
   return (
     <div className="flex flex-col items-center pt-10 w-full">
+      <h1 className="text-4xl font-bold text-[#7e5bc2] mb-6">Register New Fapp!</h1>
       <form onSubmit={submit} className="space-y-4 w-full max-w-md">
         <div className="flex flex-col">
           <label className="block mb-2">Name:</label>
@@ -94,7 +95,7 @@ const RegisterProject: NextPage = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-2 border-2 border-gray-300 focus:outline-none focus:border-red-500"
+            className="w-full px-4 py-2 border-2 border-gray-300 focus:outline-none focus:border-[#7e5bc2]"
           />
         </div>
         <div className="flex flex-col">
@@ -104,7 +105,7 @@ const RegisterProject: NextPage = () => {
             name="url"
             value={formData.url}
             onChange={handleChange}
-            className="w-full px-4 py-2 border-2 border-gray-300 focus:outline-none focus:border-red-500"
+            className="w-full px-4 py-2 border-2 border-gray-300 focus:outline-none focus:border-[#7e5bc2]"
           />
         </div>
         <div className="flex flex-col">
@@ -113,13 +114,13 @@ const RegisterProject: NextPage = () => {
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className="w-full px-4 py-2 border-2 border-gray-300 focus:outline-none focus:border-red-500"
+            className="w-full px-4 py-2 border-2 border-gray-300 focus:outline-none focus:border-[#7e5bc2]"
           />
         </div>
         <button
           disabled={isPending}
           type="submit"
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2.5 px-4 mt-4"
+          className="bg-[#7e5bc2] hover:bg-[#5e41a6] text-white font-bold py-2.5 px-4 mt-4 rounded-full"
         >
           {isPending ? "Confirming..." : "Register"}
         </button>

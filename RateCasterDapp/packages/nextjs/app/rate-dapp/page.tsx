@@ -18,9 +18,9 @@ const Modal: React.FC<ModalProps> = ({ isVisible, onClose, children }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white border-2 border-red-500 p-4 rounded-lg">
+      <div className="bg-white border-2 border-[#7e5bc2] p-4 rounded-lg">
         <div className="flex justify-end">
-          <button onClick={onClose} className="text-red-500 font-bold">
+          <button onClick={onClose} className="text-[#7e5bc2] font-bold">
             X
           </button>
         </div>
@@ -88,13 +88,13 @@ const RateDapp = () => {
       <form onSubmit={submitReview} className="space-y-4 w-full max-w-md">
         {dappDetails ? (
           <div className="text-center">
-            <h1 className="text-2xl font-bold mb-2">
+            <h1 className="text-4xl font-bold mb-2">
               Review{" "}
               <a
                 href={dappDetails.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-red-500 hover:underline"
+                className="text-[#7e5bc2] hover:underline"
               >
                 {dappDetails.name.charAt(0).toUpperCase() + dappDetails.name.slice(1)}
               </a>
@@ -113,9 +113,9 @@ const RateDapp = () => {
               type="button"
               onClick={() => setRating(index + 1)}
               className={`h-16 w-16 rounded-full text-3xl leading-none ${
-                rating > index ? "text-white-500 bg-white" : "text-black-400 bg-white"
+                rating > index ? "text-gold bg-white" : "text-black-400 bg-white"
               }`}
-              style={{ color: rating > index ? "red" : "", backgroundColor: "white" }}
+              style={{ color: rating > index ? "gold" : "", backgroundColor: "white" }}
             >
               ★
             </button>
@@ -132,19 +132,21 @@ const RateDapp = () => {
             name="comment"
             value={comment}
             onChange={e => setComment(e.target.value)}
-            className="w-full px-4 py-2 border-2 border-gray-300 focus:outline-none focus:border-red-500"
+            className="w-full px-4 py-2 border-2 border-gray-300 focus:outline-none focus:border-[#7e5bc2]"
             placeholder="Add your comment here..."
           />
         </div>
 
         {/* Submit Button */}
-        <button
-          disabled={isPending}
-          type="submit"
-          className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2.5 px-4"
-        >
-          {isPending ? "Sending..." : "Submit Review"}
-        </button>
+        <div className="flex justify-center">
+          <button
+            disabled={isPending}
+            type="submit"
+            className="mt-4 bg-[#7e5bc2] hover:bg-[#5e41a6] text-white font-bold py-2.5 px-4 rounded-full"
+          >
+            {isPending ? "Sending..." : "Submit Review"}
+          </button>
+        </div>
       </form>
       <Modal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)}>
         {hash ? (

@@ -44,16 +44,13 @@ const DisplayReviews = () => {
     fetchData();
   }, []);
 
-  const renderStars = (rating: number) => {
-    return (
-      <div className="flex justify-center gap-1">
-        {[...Array(5)].map((_, starIndex) => (
-          <span key={starIndex} className={`text-3xl ${rating > starIndex ? "text-red-500" : "text-gray-300"}`}>
-            ★
-          </span>
-        ))}
-      </div>
-    );
+  const renderStars = (averageRating: number) => {
+    const roundedRating = Math.round(averageRating);
+    return [...Array(5)].map((_, i) => (
+      <span key={i} style={{ color: i < roundedRating ? "gold" : "grey", fontSize: "24px" }}>
+        ★
+      </span>
+    ));
   };
 
   if (loading) return <p>Loading...</p>;
@@ -69,6 +66,9 @@ const DisplayReviews = () => {
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
         <div className="px-5">
+          <h1 className="text-center text-4xl font-bold" style={{ color: "#7e5bc2" }}>
+            Rate your experience with Web3!
+          </h1>
           <div className="text-center margin-top-20">
             <p className="block text-2xl my-2 font-medium">Search for project&apos;s reviews:</p>
             <div className="flex justify-center items-center mt-4">
@@ -77,7 +77,8 @@ const DisplayReviews = () => {
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 placeholder="Enter project name"
-                className="w-full px-4 py-2 border-2 border-red-500 focus:outline-none focus:border-red-500"
+                className="w-full px-4 py-2 border-2 rounded focus:outline-none focus:border-[#7e5bc2] shadow"
+                style={{ borderColor: "#7e5bc2", boxShadow: `0 0 5px #7e5bc2` }}
               />
             </div>
           </div>
@@ -94,10 +95,10 @@ const DisplayReviews = () => {
                     key={index}
                     className="border rounded-lg p-4 shadow hover:shadow-lg transition-shadow flex flex-col items-center"
                   >
-                    <h3 className="font-semibold text-lg text-center">
+                    <h3 className="font-semibold text-lg text-center" style={{ color: "#7e5bc2" }}>
                       {capitalizeFirstLetter(dappIdToNameMap[review.dappId]) || "Unknown App"}
                     </h3>
-                    {renderStars(review.starRating)}
+                    <div className="text-[#FFD700]">{renderStars(review.starRating)}</div>
                     <p className="text-center mt-2">{review.reviewText}</p>
                   </div>
                 ))}
