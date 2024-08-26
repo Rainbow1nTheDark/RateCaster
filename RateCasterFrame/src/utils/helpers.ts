@@ -33,10 +33,3 @@ export function getRandomApps<T>(array: T[], numItems: number): T[] {
     const shuffledArray = shuffleArray(array);
     return shuffledArray.slice(0, numItems);
   }
-
-export function truncateText(text: string, maxLength: number) {
-  if (text.length > maxLength) {
-    return `${text.substring(0, maxLength)}...`;
-  }
-  return text;
-}

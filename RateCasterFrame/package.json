@@ -1,28 +1,24 @@
 {
-  "name": "rate-caster",
+  "name": "cloudflare-test",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "frog dev"
+    "dev": "frog dev",
+    "wrangler:dev": "wrangler dev src/index.tsx",
+    "wrangler:deploy": "wrangler deploy --minify src/index.tsx",
+    "wrangler:static": "cp -r ./node_modules/frog/_lib/ui/.frog ./public/frog"
   },
   "dependencies": {
-    "@hono/node-server": "latest",
-    "@nextui-org/react": "^2.4.6",
-    "@vitejs/plugin-react": "^4.3.1",
-    "axios": "^1.7.2",
-    "canvas-confetti": "^1.9.3",
-    "dotenv": "^16.4.5",
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "axios": "^1.7.3",
     "ethers": "^6.13.2",
+    "fortawesome": "^0.0.1-security",
     "frog": "latest",
-    "frog-ui": "^0.1.5",
-    "graphql-request": "^7.1.0",
-    "hono": "^4",
-    "import": "^0.0.6",
-    "vite": "^5.3.5"
+    "graphql-request": "5.1.0",
+    "hono": "^4"
   },
   "devDependencies": {
-    "@types/canvas-confetti": "^1.6.4",
-    "@types/node": "^20.14.12",
-    "typescript": "latest"
+    "@cloudflare/workers-types": "latest",
+    "wrangler": "^3.69.1"
   }
 }

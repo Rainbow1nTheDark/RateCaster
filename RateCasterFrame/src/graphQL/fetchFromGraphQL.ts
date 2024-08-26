@@ -1,10 +1,6 @@
-import * as dotenv from "dotenv";
 import { ethers } from "ethers";
 import { GraphQLClient, gql } from "graphql-request";
-
-dotenv.config();
-const SCHEMA_ID = process.env.SCHEMA_ID;
-const GRAPH_ENDPOINT = process.env.GRAPH_ENDPOINT;
+import { SCHEMA_ID, GRAPH_ENDPOINT } from "../../config";
 
 const query = gql`
   query Attestation {

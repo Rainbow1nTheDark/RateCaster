@@ -1,12 +1,10 @@
-import axios, { AxiosResponse } from "axios";
-import * as dotenv from "dotenv";
+import { ALCHEMY_SUBGRAPH_API_KEY } from "../../config";
 
-dotenv.config();
-const ALCHEMY_SUBGRAPH_KEY = process.env.ALCHEMY_SUBGRAPH_API_KEY;
+const ALCHEMY_SUBGRAPH_KEY = ALCHEMY_SUBGRAPH_API_KEY;
 const ENDPOINT_DAPP_RATING_SYSTEM = `https://subgraph.satsuma-prod.com/${ALCHEMY_SUBGRAPH_KEY}/123s-team--264305/example-subgraph-name/api`;
 //const ENDPOINT_DAPP_RATER_SCHEMA_RESOLVER = `https://subgraph.satsuma-prod.com/${ALCHEMY_SUBGRAPH_KEY}/alexanders-team--782474/DappRaterSchemaResolver/api`;
-// Define a TypeScript type for the function parameters
 
+// Define a TypeScript type for the function parameters
 interface GraphQLRequestConfig {
   endpoint: string;
   query: string;
@@ -21,21 +19,26 @@ export interface GraphQLResponse<T> {
 // Generic function to execute GraphQL queries
 async function fetchGraphQL<T>(config: GraphQLRequestConfig): Promise<GraphQLResponse<T> | null> {
   try {
-    const response: AxiosResponse<GraphQLResponse<T>> = await axios.post(
-      config.endpoint,
-      JSON.stringify({ query: config.query }),
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
+    const response = await fetch(config.endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
-    return response.data;
+      body: JSON.stringify({ query: config.query }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const responseData = await response.json() as GraphQLResponse<T>;
+    return responseData;
   } catch (error) {
-    console.log("GraphQL Error: ${error}");
+    console.log(`GraphQL Error: ${error}`);
   }
   return null;
 }
+
 // Usage example with specific type for the response data
 export type DappRegistered = {
   id: string;
@@ -62,7 +65,7 @@ export async function fetchGraphQLRegisteredDapps(): Promise<GraphQLResponse<{
     const endpoint = ENDPOINT_DAPP_RATING_SYSTEM;
     return await fetchGraphQL<{ dappRegistereds: DappRegistered[] }>({ endpoint, query });
   } catch (error) {
-    console.log("GraphQL Error: ${error}");
+    console.log(`GraphQL Error: ${error}`);
   }
   return null;
 }
@@ -72,7 +75,7 @@ export async function fetchGraphQLRegisteredDappByID(
 ): Promise<GraphQLResponse<{ dappRegistered: DappRegistered }> | null> {
   try {
     if (id == null) {
-      throw Error("Dapp ID is undefined");
+      throw new Error("Dapp ID is undefined");
     }
 
     const query = `{ dappRegistered(id:"${id}") { id, dappId, description, name, url } }`;
@@ -93,7 +96,7 @@ export async function fetchDappRatings(): Promise<GraphQLResponse<{
     const endpoint = ENDPOINT_DAPP_RATING_SYSTEM;
     return await fetchGraphQL<{ dappRatingSubmitteds: DappRating[] }>({ endpoint, query });
   } catch (error) {
-    console.log("GraphQL Error: ${error}");
+    console.log(`GraphQL Error: ${error}`);
   }
   return null;
 }
@@ -106,7 +109,7 @@ export async function fetchAttestationsByWallet(): Promise<GraphQLResponse<{
     const endpoint = ENDPOINT_DAPP_RATING_SYSTEM;
     return await fetchGraphQL<{ dappRatingSubmitteds: DappRating[] }>({ endpoint, query });
   } catch (error) {
-    console.log("GraphQL Error: ${error}");
+    console.log(`GraphQL Error: ${error}`);
   }
   return null;
 }

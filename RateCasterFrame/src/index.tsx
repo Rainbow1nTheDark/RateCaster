@@ -1,40 +1,44 @@
 import { Button, Frog, TextInput } from 'frog'
-import { devtools } from 'frog/dev'
-import { serveStatic } from '@hono/node-server/serve-static'
-import DappRatingSystemABI from '../public/abi/DappRatingSystem.json'
+import DappRatingSystemABI from '../public/abi/DappRatingSystem.json' assert { type: 'json' };
 import {
   DappRegistered,
   fetchDappRatings,
   fetchGraphQLRegisteredDapps,
-} from "./graphQL/fetchFromSubgraph";
-import { RatingsMap, computeAverageRatings, getRandomApps, truncateText } from './utils/helpers'
-import { BytesLike } from 'ethers';
-
+} from "./graphQL/fetchFromSubgraph.js";
+import { RatingsMap, computeAverageRatings, getRandomApps } from './utils/helpers.js'
+import { devtools } from 'frog/dev'
+import { serveStatic } from 'frog/serve-static'
 
 // *********** Helpers ************* //
-const generateStars = (rating: number) => {
-  const fullStars = Math.floor(rating);
-  const halfStar = rating % 1 !== 0;
-  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+// const generateStars = (rating: number) => {
+//   const fullStars = Math.floor(rating);
+//   const halfStar = rating % 1 !== 0;
+//   const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 
-  return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      {[...Array(fullStars)].map((_, i) => (
-        <span key={i} style={{ color: '#FFD700' }}>★</span>
-      ))}
-      {halfStar && <span style={{ color: '#FFD700' }}>★</span>}
-      {[...Array(emptyStars)].map((_, i) => (
-        <span key={fullStars + i} style={{ color: 'lightgray' }}>★</span>
-      ))}
-    </div>
-  );
+//   return (
+//     <div style={{ display: 'flex', alignItems: 'center' }}>
+//       {[...Array(fullStars)].map((_, i) => (
+//         <span key={i} style={{ color: '#FFD700' }}>*</span>
+//       ))}
+//       {halfStar && <span style={{ color: '#FFD700' }}>*</span>}
+//       {[...Array(emptyStars)].map((_, i) => (
+//         <span key={fullStars + i} style={{ color: 'lightgray' }}>*</span>
+//       ))}
+//     </div>
+//   );
+// };
+const generateStars = (rating: number) => {
+  const roundedRating = rating % 1 === 0 ? rating.toString() : rating.toFixed(1);
+  const starText = `${roundedRating}/5`;
+  return starText;
 };
 
-// *********** App ************* //
-export const app = new Frog({ title: 'RateCaster' })
+// *********** App - Frame #1 - Explore Farcaster ************* //
+export const app = new Frog({ 
+  title: 'RateCaster', 
+})
  
 app.frame('/', async (c) => {
-
   return c.res({
     action: '/fapps',
     image: (
@@ -100,7 +104,9 @@ app.frame('/fapps', async (c) => {
     }
     
     console.log(top3Dapps)
+   
   }
+
 
   return c.res({
     action: '/fapp-info',
@@ -113,15 +119,15 @@ app.frame('/fapps', async (c) => {
             <h3 style={{ color: 'white', marginRight: '10px' }}>
               {index + 1}.<a style={{ color: '#ADD8E6' }}>&nbsp;{dapp.name}:</a>
             </h3>
-            <p style={{ color: 'white', marginRight: '10px' }}>{truncateText(dapp.description, 30)}</p>
-            <p style={{ color: 'white', marginRight: '10px' }}>{generateStars(dapp.averageRating)}</p>
+            <p style={{ color: 'white', marginRight: '10px' }}>{dapp.description}</p>
+            <p style={{ marginRight: '10px', fontSize: '42px', color: '#FFD700'}}>{generateStars(dapp.averageRating)}</p>
           </div>
         ))}
       </div>
     ),
     intents: [
-      ...top3Dapps.map((dapp, index) => (
-        <Button value={dapp.name}>{(index + 1).toString()}. {dapp.name}</Button>
+      ...top3Dapps.map((dapp) => (
+        <Button value={dapp.name}>{dapp.name}</Button>
       )),
       <Button.Link href='https://www.ratecaster.xyz/'>See All</Button.Link>
     ]
@@ -135,26 +141,28 @@ app.frame('/fapp-info', async (c) => {
   let dapp: DappRegistered | undefined;
 
   const dappResult = await fetchGraphQLRegisteredDapps();
-  console.log(dappResult?.data.dappRegistereds)
+  console.log(dappResult?.data.dappRegistereds);
+
   if(dappResult && dappResult.data) {
-    dapp = dappResult.data.dappRegistereds.find(dapp => dapp.name.toLowerCase() === appname?.toLowerCase());
+    dapp = dappResult.data.dappRegistereds.find((dapp: { name: string; }) => dapp.name.toLowerCase() === appname?.toLowerCase());
     if(dapp){
-    return c.res({
-      action: '/review/' + appname,
-      image: (
-        <div style={{ color: 'white', backgroundColor: '#7e5bc2', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '20px', height: '100%' }}>
-          <h1 style={{ color: '#FFD700', marginBottom: '20px', fontSize: 64 }}>{appname}</h1>
-          <hr style={{ width: '100%', borderColor: 'white', marginBottom: '10px' }} />
-          <h2 style={{ color: 'white', marginBottom: '20px', fontSize: 48 }}>{dapp.description}</h2>
-          <h2 style={{ color: '#ADD8E6', marginRight: '10px', marginTop: 'auto', fontSize: 48 }}>Wanna Rate or Visit the Fapp?</h2>
-        </div>
-      ),
-      intents: [
-        <Button value='appname'>Rate!</Button>,
-        <Button.Link href={dapp.url}>Visit {appname || ''}</Button.Link>
-      ]
-    })
-  }
+
+  return c.res({
+    action: '/review/' + appname,
+    image: (
+      <div style={{ color: 'white', backgroundColor: '#7e5bc2', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '20px', height: '100%' }}>
+        <h1 style={{ color: '#FFD700', marginBottom: '20px', fontSize: 64 }}>{appname}</h1>
+        <hr style={{ width: '100%', borderColor: 'white', marginBottom: '10px' }} />
+        <h2 style={{ color: 'white', marginBottom: '20px', fontSize: 48 }}>{dapp.description}</h2>
+        <h2 style={{ color: '#ADD8E6', marginRight: '10px', marginTop: 'auto', fontSize: 48 }}>Wanna Rate or Visit the Fapp?</h2>
+      </div>
+    ),
+    intents: [
+      <Button value='appname'>Rate!</Button>,
+      <Button.Link href={dapp.url}>Visit {appname || ''}</Button.Link>
+    ]
+  })
+ }
 }
 
 return c.error({message: "Coundn't find the App"});
@@ -163,7 +171,7 @@ return c.error({message: "Coundn't find the App"});
 
 // Frame to Leave a review using App Name
 app.frame('/review/:appname', (c) => {
-  const { buttonValue } = c
+  const buttonValue = 'Warpcaster';
   const appname = c.req.param('appname') || buttonValue;
 
   return c.res({
@@ -191,10 +199,10 @@ app.transaction('/submit-review/:appname', async (c) => {
 
   const dappResult = await fetchGraphQLRegisteredDapps();
   console.log(dappResult?.data.dappRegistereds)
-  let dappId: BytesLike = '';
+  let dappId;
   
   if(dappResult && dappResult.data) {
-    const dapp = dappResult.data.dappRegistereds.find(dapp => dapp.name.toLowerCase() === name.toLowerCase());
+    const dapp = dappResult.data.dappRegistereds.find((dapp: { name: string; }) => dapp.name.toLowerCase() === name.toLowerCase());
     if (dapp) {
       dappId = dapp.dappId;
       console.log(`Dapp ID: ${dappId}`);
@@ -227,101 +235,6 @@ app.frame('/finish', (c) => {
   });
 });
 
-// ******** Test Functions ******//
-app.frame('registerCaster', (c) => {
-  return c.res({
-    image: (
-      <div style={{ color: 'white', display: 'flex', fontSize: 60 }}>
-        Register your Caster!
-      </div>
-    ),
-    intents: [
-      <TextInput placeholder="Name" />,
-      <TextInput placeholder='URL' />,
-      <TextInput placeholder='Description' />,
-      <Button.Transaction target="register">Register</Button.Transaction>
-    ]
-  })
-})
 
-app.transaction('/register', (c) => {
-  const { inputText } = c;
-  console.log(inputText);
-  
-  return c.contract({
-    abi: DappRatingSystemABI,
-    chainId: 'eip155:84532',
-    functionName: 'registerDapp',
-    args: ['Yup', 'Decentralized Social All-In-One.', 'https://yup.io/'],
-    to: '0x30A622c03aaf163F9eEEF259aAc49d261047CB53'
-  })
-
-})
-
-// app.transaction('review', (c) => {
-//   const { frameData } = c
-//   const { fid, buttonIndex } = frameData;
-
-//   return c.contract({
-//     abi: DappRatingSystemABI,
-//     chainId: 'eip155:84532',
-//     functionName: 'registerDapp',
-//     args: ['Yup', 'Decentralized Social All-In-One.', 'https://yup.io/'],
-//     to: '0x30A622c03aaf163F9eEEF259aAc49d261047CB53'
-//   })
-// })
-
-
-
- 
-//
-
-// app.frame('/', async (c) => {
-//   const dappResult = await fetchGraphQLRegisteredDapps();
-//   let ratingsMap: RatingsMap = {};
-//   let enrichedDapps: string | any[] = [];
-//   let top5Dapps: any[] = [];
-
-//   if (dappResult && dappResult.data) {
-//     try {
-//       const ratingsData = await fetchDappRatings();
-//       if (ratingsData && ratingsData.data) {
-//         console.log(ratingsData.data.dappRatingSubmitteds);
-//         ratingsMap = computeAverageRatings(ratingsData.data.dappRatingSubmitteds);
-//       }
-//     } catch (ratingsError) {
-//       console.error("Error fetching ratings:", ratingsError);
-//     }
-
-//     enrichedDapps = dappResult.data.dappRegistereds.map(dapp => ({
-//       ...dapp,
-//       averageRating: ratingsMap[dapp.dappId] ?? 0,
-//     }));
-//     top5Dapps = enrichedDapps.slice(0, 3);
-//     console.log(dappResult.data);
-//   }
-//   return c.res({
-//     image: (
-//       <Box alignHorizontal="left" backgroundColor="background" padding="small" width="100%" display="flex" fontSize={{ custom: '48px' }}>
-//         <VStack gap="small">
-//           <Heading size="64">Top 3 Farcaster Apps:</Heading>
-          
-//           {top5Dapps.map((dapp, index) => (
-//             <Box fontSize={{ custom: '32px' }}  width="100%" display='flex' flexDirection="row"  borderColor="lightBlue" >
-//               <Text color="text">
-//                  {index + 1}) {dapp.name} -
-//               </Text>
-//               <Text color="text"> {generateStars(dapp.averageRating)}</Text>
-//               <Text color="text"> - {dapp.description}</Text>
-              
-//             </Box>
-//           ))}
-
-//         </VStack>
-//       </Box>
-//     )
-//   })
-// });
-
-
-devtools(app, {serveStatic})
+devtools(app, { serveStatic })
+export default app
