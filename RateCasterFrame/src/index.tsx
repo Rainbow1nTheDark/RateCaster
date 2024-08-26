@@ -7,7 +7,7 @@ import {
   fetchDappRatings,
   fetchGraphQLRegisteredDapps,
 } from "./graphQL/fetchFromSubgraph";
-import { RatingsMap, computeAverageRatings, getRandomApps } from './utils/helpers'
+import { RatingsMap, computeAverageRatings, getRandomApps, truncateText } from './utils/helpers'
 import { BytesLike } from 'ethers';
 
 
@@ -113,7 +113,7 @@ app.frame('/fapps', async (c) => {
             <h3 style={{ color: 'white', marginRight: '10px' }}>
               {index + 1}.<a style={{ color: '#ADD8E6' }}>&nbsp;{dapp.name}:</a>
             </h3>
-            <p style={{ color: 'white', marginRight: '10px' }}>{dapp.description}</p>
+            <p style={{ color: 'white', marginRight: '10px' }}>{truncateText(dapp.description, 30)}</p>
             <p style={{ color: 'white', marginRight: '10px' }}>{generateStars(dapp.averageRating)}</p>
           </div>
         ))}
@@ -123,7 +123,7 @@ app.frame('/fapps', async (c) => {
       ...top3Dapps.map((dapp, index) => (
         <Button value={dapp.name}>{(index + 1).toString()}. {dapp.name}</Button>
       )),
-      <Button.Link href='https://ratecaster.xyz'>See All</Button.Link>
+      <Button.Link href='https://www.ratecaster.xyz/'>See All</Button.Link>
     ]
   });
 });
