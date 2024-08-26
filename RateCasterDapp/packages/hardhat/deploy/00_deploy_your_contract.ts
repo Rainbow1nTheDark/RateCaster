@@ -19,14 +19,14 @@ const deployDappRaterSchemaResolver: DeployFunction = async function (hre: Hardh
     with a random private key in the .env file (then used on hardhat.config.ts)
     You can run the `yarn account` command to check your balance in every network.
   */
-  const { deployer } = await hre.getNamedAccounts();
+  // const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
   const EAS_CONTRACT_ADDRESS = "0x4200000000000000000000000000000000000021";
   const DAPP_RATER_SCHEMA = "0xeaa96eb7dd9a3101cabc983cfbfcacc1594c70832d37a79b51bc43db4e4e40fb";
 
-  //from: "0xEda854D520c2d32820D3d59562eeBbB5BA6E3440",
+  //from: "0xfAf3fb18C9CFCD328B1DFDf55078C9BfE5e20740",
   await deploy("DappRaterSchemaResolver", {
-    from: deployer,
+    from: "0xfAf3fb18C9CFCD328B1DFDf55078C9BfE5e20740",//deployer,
     // Contract constructor arguments
     args: [EAS_CONTRACT_ADDRESS],
     log: true,
@@ -36,7 +36,7 @@ const deployDappRaterSchemaResolver: DeployFunction = async function (hre: Hardh
   });
 
   // Get the deployed contract to interact with it after deploying.
-  const schemaResolver = await hre.ethers.getContract<Contract>("DappRaterSchemaResolver", deployer);
+  const schemaResolver = await hre.ethers.getContract<Contract>("DappRaterSchemaResolver", '0xfAf3fb18C9CFCD328B1DFDf55078C9BfE5e20740');
   console.log("👋 Schema resolver version: ", await schemaResolver.version());
 
   await deploy("DappRatingSystem", {

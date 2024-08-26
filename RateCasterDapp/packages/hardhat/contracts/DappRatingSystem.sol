@@ -9,7 +9,7 @@ contract DappRatingSystem {
     uint256 public dappCounter;
     mapping(bytes32 => bool) public dappIdIsRegistered;
 
-    event DappRegistered(bytes32 indexed dappId, string name, string description, string url, address owner, uint256 registrationTime);
+    event DappRegistered(bytes32 indexed dappId, string name, string description, string url, string imageURL, address owner, uint256 registrationTime);
     event DappRatingSubmitted(bytes32 indexed attestationId, bytes32 indexed dappId, uint8 starRating, string reviewText);
     event DappRatingRevoked(bytes32 indexed ratingUid, address indexed revokedBy, uint256 revokedAt);
 
@@ -37,7 +37,7 @@ contract DappRatingSystem {
         _schemaUid = schema;
     }
 
-    function registerDapp(string memory _name, string memory _description, string memory _url) public {
+    function registerDapp(string memory _name, string memory _description, string memory _url, string memory _imageURL) public {
         // Calculate the dappId by hashing the URL
         bytes32 _dappId = keccak256(abi.encodePacked(_url));
 
@@ -49,7 +49,7 @@ contract DappRatingSystem {
         dappIdIsRegistered[_dappId] = true;
 
         // Emit the DappRegistered event
-        emit DappRegistered(_dappId, _name, _description, _url, msg.sender, block.timestamp);
+        emit DappRegistered(_dappId, _name, _description, _url, _imageURL, msg.sender, block.timestamp);
     }
 
     function isDappRegistered(bytes32 dappId) external view returns (bool) {

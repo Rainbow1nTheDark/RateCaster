@@ -527,16 +527,22 @@ const deployedContracts = {
         },
       ],
       inheritedFunctions: {
-        attest: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
-        isPayable: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
-        multiAttest: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
-        multiRevoke: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
-        revoke: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
-        version: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        attest:
+          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        isPayable:
+          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        multiAttest:
+          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        multiRevoke:
+          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        revoke:
+          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        version:
+          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
       },
     },
     DappRatingSystem: {
-      address: "0x30A622c03aaf163F9eEEF259aAc49d261047CB53",
+      address: "0x6A6da89A41e761d7d3AcAF950A46B82Ef69553F0",
       abi: [
         {
           inputs: [
@@ -664,6 +670,12 @@ const deployedContracts = {
             },
             {
               indexed: false,
+              internalType: "string",
+              name: "imageURL",
+              type: "string",
+            },
+            {
+              indexed: false,
               internalType: "address",
               name: "owner",
               type: "address",
@@ -773,6 +785,11 @@ const deployedContracts = {
             {
               internalType: "string",
               name: "_url",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "_imageURL",
               type: "string",
             },
           ],
