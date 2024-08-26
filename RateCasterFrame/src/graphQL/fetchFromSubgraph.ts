@@ -70,6 +70,26 @@ export async function fetchGraphQLRegisteredDapps(): Promise<GraphQLResponse<{
   return null;
 }
 
+export async function fetchGraphQLRandomRegisteredDapp(): Promise<GraphQLResponse<{ dappRegistered: DappRegistered }> | null> {
+  try {
+    const response = await fetchGraphQLRegisteredDapps();
+
+    if (response && response.data.dappRegistereds.length > 0) {
+      const randomIndex = Math.floor(Math.random() * response.data.dappRegistereds.length);
+      const randomDapp = response.data.dappRegistereds[randomIndex];
+      return {
+        data: { dappRegistered: randomDapp }
+      };
+    } else {
+      console.log("No Dapps registered or failed to fetch.");
+      return null;
+    }
+  } catch (error) {
+    console.log(`GraphQL Error: ${error}`);
+    return null;
+  }
+}
+
 export async function fetchGraphQLRegisteredDappByID(
   id: string | null,
 ): Promise<GraphQLResponse<{ dappRegistered: DappRegistered }> | null> {
