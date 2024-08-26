@@ -51,3 +51,6 @@
 # typescript
 /RateCasterFrame/*.tsbuildinfo
 
+/RateCasterFrame/.wrangler
+/RateCasterFrame/wrangler.toml
+/RateCasterFrame/config.ts
