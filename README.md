@@ -1,4 +1,4 @@
-# Rate Caster: A Trust-Oriented Social Dapp Rating System
+# Rate Caster: A Trust-Oriented Social Dapp Rating System 
 
 ## Introduction
 
