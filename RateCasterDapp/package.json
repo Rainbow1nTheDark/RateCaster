@@ -36,7 +36,13 @@
   },
   "packageManager": "yarn@3.2.3",
   "devDependencies": {
+    "@types/bn.js": "^5.1.5",
     "@types/graphql": "^14.5.0",
+    "@types/json-schema": "^7.0.15",
+    "@types/nprogress": "^0.2.3",
+    "@types/pbkdf2": "^3.1.2",
+    "@types/prop-types": "^15.7.12",
+    "@types/semver": "^7.5.8",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3"
   },

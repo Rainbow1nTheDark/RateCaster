@@ -4,12 +4,11 @@ import {
   DappRegistered,
   fetchDappRatings,
   fetchGraphQLRegisteredDapps,
-  fetchGraphQLRandomRegisteredDapp,
 } from "./graphQL/fetchFromSubgraph.js";
 import { RatingsMap, computeAverageRatings, getRandomApps } from './utils/helpers.js'
 import { devtools } from 'frog/dev'
 import { serveStatic } from 'frog/serve-static'
-import { updateScore } from './utils/storage.js';
+
 // *********** Helpers ************* //
 // const generateStars = (rating: number) => {
 //   const fullStars = Math.floor(rating);
@@ -34,27 +33,9 @@ const generateStars = (rating: number) => {
   return starText;
 };
 
-function parseButtonValue(buttonValue: string | undefined): number {
-  // Check if buttonValue is undefined or null
-  if (buttonValue === undefined || buttonValue === null) {
-      return 0;
-  }
-
-  // Convert buttonValue to a number
-  let numberValue = Number(buttonValue);
-
-  // Check if numberValue is NaN or not a finite number
-  if (isNaN(numberValue) || !Number.isFinite(numberValue)) {
-      return 0; // Return 0 if numberValue is NaN or not finite
-  }
-
-  return Math.floor(numberValue); // Ensure we return an integer value
-}
-
 // *********** App - Frame #1 - Explore Farcaster ************* //
 export const app = new Frog({ 
   title: 'RateCaster', 
-  verify: 'silent',
 })
  
 app.frame('/', async (c) => {
@@ -254,236 +235,6 @@ app.frame('/finish', (c) => {
   });
 });
 
-/***********************************************************************************************
- *                        Frame #2:   Farcaster Knowledge Test                                 *
- **********************************************************************************************/
-
-app.frame('/knowledge-check', async (c) => {
-  return c.res({
-    action: '/knowledge-check/test/0',
-    image: (
-      <div style={{ color: 'white', backgroundColor: '#7e5bc2', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px', height: '100vh' }}>
-        
-        <div style={{ display: 'flex', textAlign: 'center', marginBottom: '20px' }}>
-          <h1 style={{ color: '#FFD700', fontSize: 64 }}>
-            You think you know Farcaster Apps?
-          </h1>
-        </div>
-        <div style={{ display: 'flex', height: '40px' }}></div> 
-        <div style={{ display: 'flex', textAlign: 'center' }}>
-          <h2 style={{ color: 'white', fontSize: 48 }}>
-            Test you knowledge!
-          </h2>
-        </div>
-      </div>
-    ),
-    intents: [
-      <Button value='random'>Fight</Button>,
-    ]
-
-  })
-})
-
-app.frame('/knowledge-check/test/:counter', async (c) => {
-  const { buttonValue } = c;
-  const randomApp = await fetchGraphQLRandomRegisteredDapp();
-  let app = randomApp?.data.dappRegistered;
-  let score = parseButtonValue(buttonValue);
-  let counter = parseButtonValue(c.req.param('counter'));
-
-  console.log(score);
-  if (app && counter < 4) {
-        return c.res({
-          action: '/knowledge-check/test/' + (counter + 1),
-          image: (
-            <div style={{
-              color: 'white',
-              backgroundColor: '#7e5bc2',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: '40px',
-              height: '100%',
-              boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-              borderRadius: '12px',
-              textAlign: 'center'
-            }}>
-              <h1 style={{
-                color: '#FFD700', 
-                marginBottom: '30px', 
-                fontSize: '3em', 
-                fontWeight: 'bold', 
-                textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
-              }}>Is this Farcaster App?</h1>
-              <hr style={{
-                width: '80%', 
-                borderColor: 'rgba(255,255,255,0.5)', 
-                marginBottom: '20px',
-                opacity: 0.5
-              }} />
-              <h2 style={{
-                color: '#ADD8E6', 
-                marginBottom: '20px', 
-                fontSize: '2.5em', 
-                fontWeight: 'normal',
-                textTransform: 'uppercase',
-                letterSpacing: '2px'
-              }}>{app.name}</h2>
-            </div>
-          ),
-          intents: [
-            <Button value={String(score + 20)}>Yes!</Button>,
-            <Button value={String(score - 20)}>Nope</Button>
-          ]
-      })
-  } else if (app && counter == 4){
-    return c.res({
-      action: '/knowledge-check/result/' + (counter + 1),
-      image: (
-        <div style={{
-          color: 'white',
-          backgroundColor: '#7e5bc2',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '40px',
-          height: '100%',
-          boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-          borderRadius: '12px',
-          textAlign: 'center'
-        }}>
-          <h1 style={{
-            color: '#FFD700', 
-            marginBottom: '30px', 
-            fontSize: '3em', 
-            fontWeight: 'bold', 
-            textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
-          }}>Is this Farcaster App?</h1>
-          <hr style={{
-            width: '80%', 
-            borderColor: 'rgba(255,255,255,0.5)', 
-            marginBottom: '20px',
-            opacity: 0.5
-          }} />
-          <h2 style={{
-            color: '#ADD8E6', 
-            marginBottom: '20px', 
-            fontSize: '2.5em', 
-            fontWeight: 'normal',
-            textTransform: 'uppercase',
-            letterSpacing: '2px'
-          }}>{app.name}</h2>
-        </div>
-      ),
-      intents: [
-        <Button value={String(score + 20)}>Yes!</Button>,
-        <Button value={String(score - 20)}>Nope</Button>
-      ]
-  })
-  } else {
-    return c.error({message: "Coundn't find the App"});
-  }
-});
-
-interface ScoreDescription {
-  score: number;
-  description: string;
-  farcasterRole?: string;
-}
-
-const scoringSystem: ScoreDescription[] = [
-  {
-    score: 100,
-    description: "Woo, You're an Expert!",
-    farcasterRole: "You should be running the Farcaster ecosystem by now!"
-  },
-  {
-    score: 80,
-    description: "Almost Pro",
-    farcasterRole: "With your skills, you could definitely advise on how Farcaster apps should evolve!"
-  },
-  {
-    score: 60,
-    description: "Not Bad, prob",
-    farcasterRole: "You're on your way to becoming a key player in the Farcaster community."
-  },
-  {
-    score: 40,
-    description: "You're Getting There, Kinda..",
-    farcasterRole: "Keep learning, and soon you'll be shaping Farcaster's future."
-  },
-  {
-    score: 20,
-    description: "You Tried, Badly",
-    farcasterRole: "Maybe start by joining a Farcaster app user group?"
-  },
-  {
-    score: 0,
-    description: "Are You Even Trying?",
-    farcasterRole: "Time to dive into Farcaster basics, perhaps?"
-  }
-];
-
-function getScoreDescription(score: number): ScoreDescription {
-  const scoreEntry = scoringSystem.find(entry => entry.score === score);
-  return scoreEntry ? scoreEntry : getScoreDescription(0);
-}
-
-app.frame('/knowledge-check/result/:counter', (c) => {
-  const { buttonValue, frameData } = c;
-  let counter = parseButtonValue(c.req.param('counter'));
-  let score = parseButtonValue(buttonValue);
-
-  if (frameData){
-      const { fid } = frameData;
-      updateScore(String(fid), score);
-  }
-
-  const result = getScoreDescription(score);
-  return c.res({
-    image: (
-        <div style={{
-          color: 'white',
-          backgroundColor: '#7e5bc2',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '40px',
-          height: '100%',
-          boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-          borderRadius: '12px',
-          textAlign: 'center'
-        }}>
-          <h1 style={{
-            color: '#FFD700', 
-            marginBottom: '30px', 
-            fontSize: '2.5em', 
-            fontWeight: 'bold', 
-            textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
-          }}>{result.description}</h1>
-          <hr style={{
-            width: '80%', 
-            borderColor: 'rgba(255,255,255,0.5)', 
-            marginBottom: '20px',
-            opacity: 0.5
-          }} />
-          <div style={{
-            color: '#ADD8E6', 
-            fontSize: '1.5em', 
-            fontWeight: 'normal',
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            marginTop: '10px'
-          }}>
-            {result.farcasterRole}
-          </div>
-        </div>
-    )
-  });
-});
 
 devtools(app, { serveStatic })
 export default app

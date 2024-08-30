@@ -527,18 +527,12 @@ const deployedContracts = {
         },
       ],
       inheritedFunctions: {
-        attest:
-          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
-        isPayable:
-          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
-        multiAttest:
-          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
-        multiRevoke:
-          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
-        revoke:
-          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
-        version:
-          "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        attest: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        isPayable: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        multiAttest: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        multiRevoke: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        revoke: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
+        version: "@ethereum-attestation-service/eas-contracts/contracts/resolver/SchemaResolver.sol",
       },
     },
     DappRatingSystem: {

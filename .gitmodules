@@ -1,0 +1,6 @@
+[submodule "RateCasterApp"]
+	path = RateCasterApp
+	url = https://github.com/Rainbow1nTheDark/RateCasterApp
+[submodule "RateCasterFrames"]
+	path = RateCasterFrames
+	url = https://github.com/Rainbow1nTheDark/RateCasterFrames

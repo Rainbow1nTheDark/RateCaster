@@ -94,7 +94,9 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center pt-10">
       <div className="px-5 text-center">
-        <h1 className="text-4xl font-bold" style={{ color: "#7e5bc2" }}>Rate your experience with Farcaster!</h1>
+        <h1 className="text-4xl font-bold" style={{ color: "#7e5bc2" }}>
+          Rate your experience with Farcaster!
+        </h1>
         <p className="text-2xl my-2 font-medium">Search for a project:</p>
         <div className="flex justify-center mt-4">
           <input
@@ -123,14 +125,25 @@ const Home = () => {
                   key={dapp.dappId}
                   className="border rounded-lg p-4 shadow hover:shadow-lg transition-shadow flex flex-col items-center"
                 >
-                  <h3 className="font-semibold text-lg text-center" style={{ color: "#7e5bc2" }}>{dapp.name}</h3>
+                  {/* Add the icon here */}
+                  <img
+                    src={dapp.url + "favicon.ico"} // Assuming each dapp has an iconUrl property
+                    alt={`${dapp.name} icon`}
+                    className="w-12 h-12 mb-2" // 48x48 pixels with some margin
+                  />
+                  <h3 className="font-semibold text-lg text-center" style={{ color: "#7e5bc2" }}>
+                    {dapp.name}
+                  </h3>
                   <p className="text-center mb-4">{dapp.description}</p>
                   <div className="text-yellow-500">{renderStars(dapp.averageRating ?? 0)}</div>
                   <div className="flex justify-between items-center w-full mt-2">
                     <a href={dapp.url} className="text-blue-500 hover:underline" style={{ color: "#7e5bc2" }}>
                       Visit Site
                     </a>
-                    <a href={`/rate-dapp?id=${dapp.id}`} className="text-blue-500 hover:underline" style={{ color: "#7e5bc2" }}
+                    <a
+                      href={`/rate-dapp?id=${dapp.id}`}
+                      className="text-blue-500 hover:underline"
+                      style={{ color: "#7e5bc2" }}
                     >
                       Rate This App
                     </a>

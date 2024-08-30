@@ -26,7 +26,7 @@ const deployDappRaterSchemaResolver: DeployFunction = async function (hre: Hardh
 
   //from: "0xfAf3fb18C9CFCD328B1DFDf55078C9BfE5e20740",
   await deploy("DappRaterSchemaResolver", {
-    from: "0xfAf3fb18C9CFCD328B1DFDf55078C9BfE5e20740",//deployer,
+    from: "0xfAf3fb18C9CFCD328B1DFDf55078C9BfE5e20740", //deployer,
     // Contract constructor arguments
     args: [EAS_CONTRACT_ADDRESS],
     log: true,
@@ -36,7 +36,10 @@ const deployDappRaterSchemaResolver: DeployFunction = async function (hre: Hardh
   });
 
   // Get the deployed contract to interact with it after deploying.
-  const schemaResolver = await hre.ethers.getContract<Contract>("DappRaterSchemaResolver", '0xfAf3fb18C9CFCD328B1DFDf55078C9BfE5e20740');
+  const schemaResolver = await hre.ethers.getContract<Contract>(
+    "DappRaterSchemaResolver",
+    "0xfAf3fb18C9CFCD328B1DFDf55078C9BfE5e20740",
+  );
   console.log("👋 Schema resolver version: ", await schemaResolver.version());
 
   await deploy("DappRatingSystem", {
