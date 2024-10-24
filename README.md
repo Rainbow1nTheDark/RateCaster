@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Rate Caster is a decentralized application (Dapp) built on the Base blockchain, designed to enhance transparency and trust within the Web3 ecosystem while supporting its growth. It enables users to rate and review decentralized applications, fostering a community-driven reputation system that helps users make informed decisions about which Dapps to trust and use. It is designed to be compatible with Warpcaster, allowing users to review and rate apps within it. Currently, user reviews are mapped to their wallets, with plans to integrate Farcaster IDs in the future to see real user reviews instead of just public keys.
+Rate Caster is a decentralized application (Dapp) built on blockchain, designed to enhance transparency and trust within the Web3 ecosystem while supporting its growth. It enables users to rate and review decentralized applications, fostering a community-driven reputation system that helps users make informed decisions about which Dapps to trust and use. It is designed to be compatible with Warpcaster, allowing users to review and rate apps within it. Currently, user reviews are mapped to their wallets, with plans to integrate Farcaster IDs in the future to see real user reviews instead of just public keys.
 
 ## Why Rate Caster?
 
