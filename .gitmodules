@@ -4,3 +4,6 @@
 [submodule "RateCasterFrames"]
 	path = RateCasterFrames
 	url = https://github.com/Rainbow1nTheDark/RateCasterFrames
+[submodule "RateCasterLandingPage"]
+	path = RateCasterLandingPage
+	url = https://github.com/Rainbow1nTheDark/RateCasterLandingPage
