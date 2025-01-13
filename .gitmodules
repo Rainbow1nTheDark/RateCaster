@@ -7,3 +7,6 @@
 [submodule "RateCasterFrames"]
 	path = RateCasterFrames
 	url = https://github.com/Rainbow1nTheDark/RateCasterFrames
+[submodule "RateCasterSDK"]
+	path = RateCasterSDK
+	url = https://github.com/Rainbow1nTheDark/RateCasterSDK
